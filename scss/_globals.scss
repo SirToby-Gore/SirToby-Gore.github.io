@@ -1,0 +1,28 @@
+@use 'colours' as *;
+
+:root {
+	color-scheme: light dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+	color: $text-colour;
+	text-decoration: underline;
+	text-transform: uppercase;
+	font-family: monospace;
+	font-size: 1rem;
+
+	&:hover,
+	&:focus-within,
+	&:active {
+		color: $active-text;
+	}
+
+	&:target {
+		display: block;
+		position: relative;
+	}
+}

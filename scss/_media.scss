@@ -1,0 +1,16 @@
+@media (max-width: 650px) {
+    main {
+        $padding: 1rem;
+
+        padding-left: $padding;
+        padding-right: $padding;
+    }
+    #navbar {
+        .links {
+            flex-direction: column;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+}

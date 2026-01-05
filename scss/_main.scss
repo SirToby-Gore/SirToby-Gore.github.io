@@ -1,0 +1,112 @@
+@use 'sass:color';
+@use 'colours' as *;
+@use 'mixins' as *;
+
+main {
+	display: flex;
+	flex-direction: column;
+	padding: 50dvh 10rem;
+
+	.box {
+		margin: 5rem 0;
+
+		scroll-margin-top: 10rem;
+
+		@include background-blur();
+		border-radius: 2rem;
+		padding: 1rem;
+		
+		padding: 0.7rem 2rem;
+		
+		.title {
+			@include capitalise();
+			text-decoration: underline;
+		}
+
+		hr {
+			color: $text-colour;
+		}
+
+		.sub-title {
+			.info {
+				font-size: large;
+				text-transform: capitalize;
+			}
+			.info + .info::before {
+				content: '| ';
+				margin: 0.5rem;
+			}
+		}	
+
+		.sub-text {
+			p {
+				@include capitalise();
+			}
+		}
+
+		.project {
+			.info {
+				@include capitalise();
+			}
+		}
+	}
+
+	.box#contact {
+		.contact {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			gap: 0.6rem;
+
+			* {
+				display: inline;
+			}
+
+			img {
+				aspect-ratio: 1;
+				width: 3rem;
+			}
+		}
+	}
+
+	.box#languages {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1.6rem;
+
+		.language {
+			border-radius: 1rem;
+			
+			display: flex;
+			flex-direction: column;
+			gap: 0.6rem;
+			
+			padding: 1rem;
+		}
+		#python {
+			@include background-blur(#ffd23f, rgba(#346fa0, 0.16));
+		}
+		#assembly {
+			$assembly-colour: #6e4c13;
+			@include background-blur($assembly-colour);
+		}
+		#dart {
+			$dart-colour: #00b4ab;
+			@include background-blur($dart-colour);
+		}
+		#ruby {
+			$ruby-colour: #cc342d;
+			@include background-blur($ruby-colour);
+		}
+		#cobol {
+			$cobol-colour: #f0c808;
+			@include background-blur($cobol-colour);
+		}
+		#cpp {
+			$cpp-colour: #00427e;
+			@include background-blur($cpp-colour);
+		}
+	}
+}

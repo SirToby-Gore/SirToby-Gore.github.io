@@ -1,0 +1,6 @@
+@use 'sass:color';
+
+$background: rgb(192, 192, 192);
+
+$active-text: color.adjust($background, $lightness: -10%);
+$text-colour: color.adjust($background, $lightness: 50%);

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toby gore | Portfolio</title>
+    <style>
+        /* Injected from styles.css */
+        :root {
+  color-scheme: light dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  color: hsl(0, 0%, 125.2941176471%);
+  text-decoration: underline;
+  text-transform: uppercase;
+  font-family: monospace;
+  font-size: 1rem;
+}
+a:hover, a:focus-within, a:active {
+  color: rgb(166.5, 166.5, 166.5);
+}
+a:target {
+  display: block;
+  position: relative;
+}
+
+body {
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+#navbar {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: last baseline;
+  z-index: 1;
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(255, 255, 255, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: white 2px solid;
+  border-radius: 2rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  transition: opacity 0.5s ease-in-out;
+}
+#navbar[open] {
+  opacity: 1;
+}
+#navbar:not([open]) {
+  opacity: 0.7;
+}
+#navbar .name {
+  text-align: center;
+  text-transform: capitalize;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.6rem;
+}
+#navbar .name:hover, #navbar .name:active, #navbar .name:focus-within {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#navbar .links {
+  list-style: none;
+  align-items: inherit;
+  display: inline-flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  padding: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 50dvh 10rem;
+}
+main .box {
+  margin: 5rem 0;
+  scroll-margin-top: 10rem;
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(255, 255, 255, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: white 2px solid;
+  border-radius: 2rem;
+  border-radius: 2rem;
+  padding: 1rem;
+  padding: 0.7rem 2rem;
+}
+main .box .title {
+  text-transform: lowercase;
+}
+main .box .title::first-letter {
+  text-transform: uppercase;
+}
+main .box .title {
+  text-decoration: underline;
+}
+main .box hr {
+  color: hsl(0, 0%, 125.2941176471%);
+}
+main .box .sub-title .info {
+  font-size: large;
+  text-transform: capitalize;
+}
+main .box .sub-title .info + .info::before {
+  content: "| ";
+  margin: 0.5rem;
+}
+main .box .sub-text p {
+  text-transform: lowercase;
+}
+main .box .sub-text p::first-letter {
+  text-transform: uppercase;
+}
+main .box .project .info {
+  text-transform: lowercase;
+}
+main .box .project .info::first-letter {
+  text-transform: uppercase;
+}
+main .box#contact .contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+}
+main .box#contact .contact * {
+  display: inline;
+}
+main .box#contact .contact img {
+  aspect-ratio: 1;
+  width: 3rem;
+}
+main .box#languages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.6rem;
+}
+main .box#languages .language {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+}
+main .box#languages #python {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(255, 210, 63, 0.15), rgba(52, 111, 160, 0.16));
+  backdrop-filter: blur(3rem);
+  border: #ffd23f 2px solid;
+  border-radius: 2rem;
+}
+main .box#languages #assembly {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(110, 76, 19, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #6e4c13 2px solid;
+  border-radius: 2rem;
+}
+main .box#languages #dart {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(0, 180, 171, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #00b4ab 2px solid;
+  border-radius: 2rem;
+}
+main .box#languages #ruby {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(204, 52, 45, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #cc342d 2px solid;
+  border-radius: 2rem;
+}
+main .box#languages #cobol {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(240, 200, 8, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #f0c808 2px solid;
+  border-radius: 2rem;
+}
+main .box#languages #cpp {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(0, 66, 126, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #00427e 2px solid;
+  border-radius: 2rem;
+}
+
+@media (max-width: 650px) {
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  #navbar .links {
+    flex-direction: column;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" open>
+        <a class="name" href="https://github.com/sirtoby-gore">toby gore</a>
+        <ul class="links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- About Section -->
+        <section id="about" class="box">
+            <h2 class="title">About Me</h2>
+            <div class="sub-text">
+                <p>I am a student at Bournemouth University; I come from a small village in Suffolk, always one for a cominity mind</p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="box">
+            <h2 class="title">Work Experience</h2>
+                            <div class="entry">
+                    <div class="sub-title">
+                        <span class="info">Weekend sales assistant</span>
+                        <span class="info">Cherry Lane</span>
+                        <span class="info">JUN 2024 - SEP 2025</span>
+                    </div>
+                    <p class="description">A promotion from a temporary to a permanent contract at Pulham.</p>
+                </div>
+                                    <hr>
+                                            <div class="entry">
+                    <div class="sub-title">
+                        <span class="info">Work placement</span>
+                        <span class="info">Netscout</span>
+                        <span class="info">JUL 2024 - DEC 2024</span>
+                    </div>
+                    <p class="description">This was an unpaid office job that evolved into a 4-day work week, where I worked with a team on projects and tools for the business.</p>
+                </div>
+                                    <hr>
+                                            <div class="entry">
+                    <div class="sub-title">
+                        <span class="info">Temp Weekend Sales Assistant</span>
+                        <span class="info">Cherry Lane</span>
+                        <span class="info">MAR (2024 & 2025) - JUN (2024 & 2025)</span>
+                    </div>
+                    <p class="description">Stocking shelves, till operation, customer assistance, and plant maintenance and care.</p>
+                </div>
+                                    <hr>
+                                            <div class="entry">
+                    <div class="sub-title">
+                        <span class="info">Freelance Labourer</span>
+                        <span class="info">Brome &amp; Oakley Almshouses</span>
+                        <span class="info">AUG 2023</span>
+                    </div>
+                    <p class="description">Hand-shifting 4.5 tonnes of shingle for my village&#039;s trust.</p>
+                </div>
+                                    <hr>
+                                            <div class="entry">
+                    <div class="sub-title">
+                        <span class="info">Freelance Labourer</span>
+                        <span class="info">Mr. Bamber</span>
+                        <span class="info">JUL 2022 & MAY 2023</span>
+                    </div>
+                    <p class="description">Working for a private individual to help set up and run two events.</p>
+                </div>
+                                    <hr>
+                                            <div class="entry">
+                    <div class="sub-title">
+                        <span class="info">Egg Packing</span>
+                        <span class="info">Havens Field Happy Hens</span>
+                        <span class="info">ad hoc</span>
+                    </div>
+                    <p class="description">Providing holiday cover for a local egg producer.</p>
+                </div>
+                                    </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="box">
+            <h2 class="title">Achievements & Activities</h2>
+                    </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="box">
+            <h2 class="title">Contact</h2>
+            <div class="contact-list">
+                                <div class="contact">
+                    <span>Email:</span>
+                    <a href="mailto:tobyedwardgore@gmail.com">tobyedwardgore@gmail.com</a>
+                </div>
+                
+                                <div class="contact">
+                    <span>Phone:</span>
+                    <span>07943 600797</span>
+                </div>
+                
+                                <div class="contact">
+                    <span>LinkedIn:</span>
+                    <a href="https://www.linkedin.com/in/toby-gore-b4021626b/" target="_blank">Connect with me</a>
+                </div>
+                
+                            </div>
+        </section>
+    </main>
+
+    <script>
+        // Smooth scroll and Navbar behavior logic
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.removeAttribute('open');
+            } else {
+                navbar.setAttribute('open', '');
+            }
+        });
+    </script>
+</body>
+</html>

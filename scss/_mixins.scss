@@ -1,0 +1,29 @@
+@use 'colours' as *;
+
+@mixin background-blur($colour-from: white, $colour-to: transparent) {
+	background-image: radial-gradient(
+		farthest-corner at 50% 100%,
+		rgba($colour-from, 0.15),
+		$colour-to
+	);
+
+	backdrop-filter: blur(3rem);
+	border: $colour-from 2px solid;
+	border-radius: 2rem;
+}
+
+@mixin capitalise() {
+	text-transform: lowercase;
+
+	&::first-letter {
+		text-transform: uppercase;
+	}
+}
+
+@mixin navbar-open() {
+	opacity: 1;
+}
+
+@mixin navbar-closed() {
+	opacity: 0.7;
+}
