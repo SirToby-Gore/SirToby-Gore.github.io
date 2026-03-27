@@ -1,0 +1,103 @@
+@use 'sass:color' as colour;
+
+:root {
+	color-scheme: light dark;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	margin: 0;
+	padding: 1rem;
+
+	gap: 1rem;
+
+	* {
+		width: 80%;
+
+		* {
+			width: 100%;
+		}
+	}
+}
+
+#measurement-inputs {
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	justify-content: space-evenly;
+
+	gap: 1rem;
+
+	input,
+	button {
+		border: 1px solid;
+		border-color: lightblue;
+		border-radius: 0.5rem;
+		padding: 0.5rem;
+
+		outline: none;
+
+		&:hover {
+			cursor: pointer;
+			background-color: colour.adjust(lightgrey, $lightness: 10%);
+
+			border-color: blue;
+
+			color: black;
+		}
+
+		&:active,
+		&:focus-within {
+			border-color: navy;
+			background-color: lightgrey;
+			
+			color: black;
+		}
+	}
+}
+
+#output {
+	border: 0.2rem darkslategrey solid;
+	border-radius: 0.5rem;
+
+	padding: 1rem;
+
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+
+	#star {
+		$size: 5rem;
+
+		width: $size;
+		height: $size;
+
+		clip-path: none;
+
+		background-color: light-dark(crimson, red);
+	}
+
+	#code {
+		overflow: scroll;
+		max-height: 20rem;
+
+		font-family: monospace;
+
+		font-size: large;
+
+		&::before {
+			color: gray;
+			content: "clip-path: ";
+		}
+
+		&::after {
+			color: gray;
+			content: ";";
+		}
+	}
+}

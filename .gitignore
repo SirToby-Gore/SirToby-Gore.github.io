@@ -1,4 +1,4 @@
 *.sh
 *.json
 .url
-css/*.css.map
+*.css.map

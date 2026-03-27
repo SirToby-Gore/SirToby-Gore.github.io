@@ -30,14 +30,12 @@ body {
 }
 
 #navbar {
-  position: fixed;
-  top: 1rem;
-  left: 50%;
-  transform: translate(-50%, 0);
+  position: sticky;
+  top: 0.6rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: last baseline;
+  align-items: center;
   z-index: 1;
   background-image: radial-gradient(farthest-corner at 50% 100%, rgba(255, 255, 255, 0.15), transparent);
   backdrop-filter: blur(3rem);
@@ -65,19 +63,25 @@ body {
 }
 #navbar .links {
   list-style: none;
-  align-items: inherit;
+  align-items: center;
+  justify-content: center;
   display: inline-flex;
   flex-direction: row;
-  gap: 0.6rem;
+  gap: 1rem;
   padding: 0;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  padding: 50dvh 10rem;
 }
-main .box {
+
+main.cv {
+  display: flex;
+  flex-direction: column;
+  padding: 12dvh 10rem;
+}
+main.cv .box {
   margin: 5rem 0;
   scroll-margin-top: 10rem;
   background-image: radial-gradient(farthest-corner at 50% 100%, rgba(255, 255, 255, 0.15), transparent);
@@ -88,95 +92,95 @@ main .box {
   padding: 1rem;
   padding: 0.7rem 2rem;
 }
-main .box .title {
+main.cv .box .title {
   text-transform: lowercase;
 }
-main .box .title::first-letter {
+main.cv .box .title::first-letter {
   text-transform: uppercase;
 }
-main .box .title {
+main.cv .box .title {
   text-decoration: underline;
 }
-main .box hr {
+main.cv .box hr {
   color: hsl(0, 0%, 125.2941176471%);
 }
-main .box .sub-title .info {
+main.cv .box .sub-title .info {
   font-size: large;
   text-transform: capitalize;
 }
-main .box .sub-title .info + .info::before {
+main.cv .box .sub-title .info + .info::before {
   content: "| ";
   margin: 0.5rem;
 }
-main .box .sub-text p {
+main.cv .box .sub-text p {
   text-transform: lowercase;
 }
-main .box .sub-text p::first-letter {
+main.cv .box .sub-text p::first-letter {
   text-transform: uppercase;
 }
-main .box .project .info {
+main.cv .box .project .info {
   text-transform: lowercase;
 }
-main .box .project .info::first-letter {
+main.cv .box .project .info::first-letter {
   text-transform: uppercase;
 }
-main .box#contact .contact {
+main.cv .box#contact .contact {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.6rem;
 }
-main .box#contact .contact * {
+main.cv .box#contact .contact * {
   display: inline;
 }
-main .box#contact .contact img {
+main.cv .box#contact .contact img {
   aspect-ratio: 1;
   width: 3rem;
 }
-main .box#languages {
+main.cv .box#languages {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1.6rem;
 }
-main .box#languages .language {
+main.cv .box#languages .language {
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   padding: 1rem;
 }
-main .box#languages #python {
+main.cv .box#languages #python {
   background-image: radial-gradient(farthest-corner at 50% 100%, rgba(255, 210, 63, 0.15), rgba(52, 111, 160, 0.16));
   backdrop-filter: blur(3rem);
   border: #ffd23f 2px solid;
   border-radius: 2rem;
 }
-main .box#languages #assembly {
+main.cv .box#languages #assembly {
   background-image: radial-gradient(farthest-corner at 50% 100%, rgba(110, 76, 19, 0.15), transparent);
   backdrop-filter: blur(3rem);
   border: #6e4c13 2px solid;
   border-radius: 2rem;
 }
-main .box#languages #dart {
+main.cv .box#languages #dart {
   background-image: radial-gradient(farthest-corner at 50% 100%, rgba(0, 180, 171, 0.15), transparent);
   backdrop-filter: blur(3rem);
   border: #00b4ab 2px solid;
   border-radius: 2rem;
 }
-main .box#languages #ruby {
+main.cv .box#languages #ruby {
   background-image: radial-gradient(farthest-corner at 50% 100%, rgba(204, 52, 45, 0.15), transparent);
   backdrop-filter: blur(3rem);
   border: #cc342d 2px solid;
   border-radius: 2rem;
 }
-main .box#languages #cobol {
+main.cv .box#languages #cobol {
   background-image: radial-gradient(farthest-corner at 50% 100%, rgba(240, 200, 8, 0.15), transparent);
   backdrop-filter: blur(3rem);
   border: #f0c808 2px solid;
   border-radius: 2rem;
 }
-main .box#languages #cpp {
+main.cv .box#languages #cpp {
   background-image: radial-gradient(farthest-corner at 50% 100%, rgba(0, 66, 126, 0.15), transparent);
   backdrop-filter: blur(3rem);
   border: #00427e 2px solid;
@@ -184,7 +188,7 @@ main .box#languages #cpp {
 }
 
 @media (max-width: 650px) {
-  main {
+  main.cv {
     padding-left: 1rem;
     padding-right: 1rem;
   }

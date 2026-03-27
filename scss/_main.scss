@@ -5,7 +5,14 @@
 main {
 	display: flex;
 	flex-direction: column;
-	padding: 50dvh 10rem;
+	
+}
+
+
+main.cv {
+	display: flex;
+	flex-direction: column;
+	padding: 12dvh 10rem;
 
 	.box {
 		margin: 5rem 0;
