@@ -1,0 +1,124 @@
+main.cv {
+  display: flex;
+  flex-direction: column;
+  padding: 12dvh 10rem;
+}
+main.cv .box {
+  margin: 5rem 0;
+  scroll-margin-top: 10rem;
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(255, 255, 255, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: white 2px solid;
+  border-radius: 2rem;
+  border-radius: 2rem;
+  padding: 1rem;
+  padding: 0.7rem 2rem;
+}
+main.cv .box .title {
+  text-transform: lowercase;
+}
+main.cv .box .title::first-letter {
+  text-transform: uppercase;
+}
+main.cv .box .title {
+  text-decoration: underline;
+}
+main.cv .box hr {
+  color: hsl(0, 0%, 125.2941176471%);
+}
+main.cv .box .sub-title .info {
+  font-size: large;
+  text-transform: capitalize;
+}
+main.cv .box .sub-title .info + .info::before {
+  content: "| ";
+  margin: 0.5rem;
+}
+main.cv .box .sub-text p {
+  text-transform: lowercase;
+}
+main.cv .box .sub-text p::first-letter {
+  text-transform: uppercase;
+}
+main.cv .box .project .info {
+  text-transform: lowercase;
+}
+main.cv .box .project .info::first-letter {
+  text-transform: uppercase;
+}
+main.cv .box#contact .contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+}
+main.cv .box#contact .contact * {
+  display: inline;
+}
+main.cv .box#contact .contact img {
+  aspect-ratio: 1;
+  width: 3rem;
+}
+main.cv .box#languages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.6rem;
+}
+main.cv .box#languages .language {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+}
+main.cv .box#languages #python {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(255, 210, 63, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #ffd23f 2px solid;
+  border-radius: 2rem;
+}
+main.cv .box#languages #sql {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(252, 255, 64, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #fcff40 2px solid;
+  border-radius: 2rem;
+}
+main.cv .box#languages #dart {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(0, 180, 171, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #00b4ab 2px solid;
+  border-radius: 2rem;
+}
+main.cv .box#languages #bash {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(255, 123, 0, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #ff7b00 2px solid;
+  border-radius: 2rem;
+}
+main.cv .box#languages #php {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(109, 0, 211, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #6d00d3 2px solid;
+  border-radius: 2rem;
+}
+main.cv .box#languages #html-css {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(255, 102, 0, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #ff6600 2px solid;
+  border-radius: 2rem;
+}
+main.cv .box#languages #typescript {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(0, 75, 214, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #004bd6 2px solid;
+  border-radius: 2rem;
+}
+main.cv .box#languages #scss {
+  background-image: radial-gradient(farthest-corner at 50% 100%, rgba(225, 62, 117, 0.15), transparent);
+  backdrop-filter: blur(3rem);
+  border: #e13e75 2px solid;
+  border-radius: 2rem;
+}
+
+/*# sourceMappingURL=styles.css.map */

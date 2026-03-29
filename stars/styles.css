@@ -2,19 +2,12 @@
   color-scheme: light dark;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 1rem;
-  gap: 1rem;
-}
-body * {
+main.stars {
   width: 80%;
-}
-body * * {
-  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 1.6rem;
+  overflow-y: scroll;
 }
 
 #measurement-inputs {
@@ -26,42 +19,41 @@ body * * {
 }
 #measurement-inputs input,
 #measurement-inputs button {
-  border: 1px solid;
-  border-color: lightblue;
+  border: 1px solid lightgrey;
+  background-color: rgba(56, 56, 56, 0.1);
   border-radius: 0.5rem;
+  backdrop-filter: blur(1rem);
   padding: 0.5rem;
   outline: none;
 }
 #measurement-inputs input:hover,
 #measurement-inputs button:hover {
   cursor: pointer;
-  background-color: rgb(236.5, 236.5, 236.5);
-  border-color: blue;
-  color: black;
+  border-color: turquoise;
 }
 #measurement-inputs input:active, #measurement-inputs input:focus-within,
 #measurement-inputs button:active,
 #measurement-inputs button:focus-within {
-  border-color: navy;
-  background-color: lightgrey;
-  color: black;
+  border-color: lightseagreen;
 }
 
 #output {
   border: 0.2rem darkslategrey solid;
   border-radius: 0.5rem;
   padding: 1rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(1rem);
 }
 #output #star {
   width: 5rem;
   height: 5rem;
   clip-path: none;
-  background-color: light-dark(crimson, red);
+  background-color: lightseagreen;
 }
 #output #code {
   overflow: scroll;

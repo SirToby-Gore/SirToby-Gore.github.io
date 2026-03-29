@@ -1,0 +1,154 @@
+@use 'sass:color' as colour;
+@use 'sass:list';
+@use 'sass:math'; // Import math module for pow if needed, but not for CSS calc()
+
+// this is the default colour for the bars
+$bar-background-colour: transparent;
+
+// the radius of the circle
+$form-radius: 15rem;
+
+// the list of css colours that circle at an evenly spaced distance
+$colours: (
+    turquoise,
+    lightgreen,
+    // yellow,
+    // orange,
+);
+
+// the length of the trail on each colour as a absolute percentage
+$length-of-colour: 20;
+
+// the amount of bleed forward on each colour as a absolute percentage, can not be larger than the colour's lengths
+$delay-lead: 4;
+
+@keyframes flashGreen {
+    @if (list.length($colours) * $length-of-colour > 100) {
+        @error 'Length of colour is too long for number of colours in list';
+    }
+
+    @if ($delay-lead > $length-of-colour) {
+        @error 'Colour lead is too long';
+    }
+
+    @for $index from 1 through list.length($colours) {
+        $percent-way-through: math.div($index - 1, list.length($colours)) * 100;
+
+        #{$percent-way-through + '%'} {
+            background-color: $bar-background-colour;
+        }
+
+        #{($percent-way-through + $delay-lead) + '%'} {
+            background-color: list.nth($colours, $index);
+        }
+
+        #{($percent-way-through + $length-of-colour) + '%'} {
+            background-color: $bar-background-colour;
+        }
+    }
+}
+
+@mixin center-self() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body {
+	background-image: url('/assets/images/spinner-background.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.box {
+    position: relative; 
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; 
+
+    * {
+        color: black;
+    }
+
+    .form {
+        @include center-self();
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.6rem;
+
+        z-index: 1;
+
+        width: $form-radius;
+        aspect-ratio: 1;
+
+        border: 0.2rem solid rgba(white, 0.8);
+        
+        // use for the rectangular middle
+        border-radius: 1rem;
+        padding: 0.6rem;
+        
+        // use for circular middle
+        // border-radius: 50%;
+        // padding: 3%;
+
+        background-color: rgba(colour.adjust(darkgray, $lightness: 20%), 0.2);
+
+        h1, input, button {
+            padding: 0.6rem;
+            margin: 0; 
+        }
+
+        h1 {
+            text-align: center;
+            text-decoration: underline;
+            font-size: 1.6rem;
+        }
+
+        input {
+            border-radius: 0.5rem;
+            background-color: rgba(122, 122, 122, 0.2);
+            width: 90%;
+            font-size: 1rem;
+            border: 2px solid darkgrey;
+        }
+
+        button {
+            background-color: navy;
+            border: none;
+            border-radius: 1rem;
+            color: white;
+            font-weight: bold;
+            padding: 0.5rem 5rem;
+            cursor: pointer;
+
+            &:hover,
+            &:focus-within {
+                background-color: blue;
+            }
+
+            &:active {
+                background-color: lightblue;
+            }
+        }
+    }
+
+    .bar-container {
+        @include center-self();
+        width: 100%;
+        height: 100%;
+
+        .bar {
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            background-color: $bar-background-colour;
+            animation: flashGreen var(--animation-length) ease-in-out infinite var(--delay);
+        }
+    }
+}	

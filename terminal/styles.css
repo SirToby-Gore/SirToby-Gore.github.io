@@ -1,0 +1,89 @@
+body {
+  padding: 0;
+  margin: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(34, 34, 34);
+}
+
+* {
+  font-family: monospace;
+}
+
+.terminal {
+  background-color: black;
+  color: white;
+  border: white 0.05rem solid;
+  border-radius: 0.1rem;
+  padding: 0.05rem;
+  min-width: 80%;
+  min-height: 80%;
+}
+.terminal .terminal-text {
+  margin-left: 0.5rem;
+}
+.terminal .cursor {
+  display: inline-block;
+  animation: infinite 1.5s cursor-animation;
+  align-self: flex-end;
+  content: "_";
+  width: 0.5rem;
+  height: 1rem;
+}
+@keyframes cursor-animation {
+  0% {
+    background-color: white;
+  }
+  49% {
+    background-color: white;
+  }
+  50% {
+    background-color: black;
+  }
+}
+
+.colour-text {
+  color: red;
+}
+
+.colour-text {
+  color: orange;
+}
+
+.colour-text {
+  color: yellow;
+}
+
+.colour-text {
+  color: green;
+}
+
+.colour-text {
+  color: blue;
+}
+
+.colour-text {
+  color: purple;
+}
+
+.colour-text {
+  color: black;
+}
+
+.colour-text {
+  color: white;
+}
+
+form {
+  display: inline-flex;
+  flex-direction: row;
+}
+form input {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+/*# sourceMappingURL=styles.css.map */

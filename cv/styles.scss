@@ -1,0 +1,107 @@
+// @use 'saas:maps';
+
+@use '../scss/_colours.scss' as *;
+@use '../scss/mixins' as *;
+
+$language-colours: (
+    'python': #ffd23f,
+    'sql': #fcff40,
+    'dart': #00b4ab,
+    'bash': #ff7b00,
+    'php': #6d00d3,
+    'html-css': #ff6600,
+    'typescript': #004bd6,
+	'scss': #e13e75,
+);
+
+main.cv {
+	display: flex;
+	flex-direction: column;
+	padding: 12dvh 10rem;
+
+	.box {
+		margin: 5rem 0;
+
+		scroll-margin-top: 10rem;
+
+		@include background-blur();
+		border-radius: 2rem;
+		padding: 1rem;
+		
+		padding: 0.7rem 2rem;
+		
+		.title {
+			@include capitalise();
+			text-decoration: underline;
+		}
+
+		hr {
+			color: $text-colour;
+		}
+
+		.sub-title {
+			.info {
+				font-size: large;
+				text-transform: capitalize;
+			}
+			.info + .info::before {
+				content: '| ';
+				margin: 0.5rem;
+			}
+		}	
+
+		.sub-text {
+			p {
+				@include capitalise();
+			}
+		}
+
+		.project {
+			.info {
+				@include capitalise();
+			}
+		}
+	}
+
+	.box#contact {
+		.contact {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			gap: 0.6rem;
+
+			* {
+				display: inline;
+			}
+
+			img {
+				aspect-ratio: 1;
+				width: 3rem;
+			}
+		}
+	}
+
+	.box#languages {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 1.6rem;
+
+		.language {
+			border-radius: 1rem;
+			
+			display: flex;
+			flex-direction: column;
+			gap: 0.6rem;
+			
+			padding: 1rem;
+		}
+
+        @each $name, $hex_colour in $language-colours {
+            ##{$name} {
+                @include background-blur($hex_colour);
+            }
+        }
+	}
+}

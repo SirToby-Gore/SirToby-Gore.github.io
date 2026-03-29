@@ -1,59 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Toby Gore | Stars</title>
-	<link rel="stylesheet" href="../css/styles.css">
+	<link rel="stylesheet" href="../styles.css">
 	<link rel="stylesheet" href="styles.css">
 	<link rel="stylesheet" href="shooting-stars.css">
 </head>
-<body class="night-sky" style="--number-of-stars: '10'" id="[auto-id]">
-	<!-- do not remove audio element!!! -->
-    <div
-        class="night-sky
-            [auto-id]"
-        style="--number-of-stars: 20;
-        --stars: 2;
-        --colours: 'lightseagreen';
+
+<body>
+	<div class="night-sky [auto-id]" style="
+			--number-of-stars: 20;
+			--stars: 2;
+			--colours: 'lightseagreen';
         ">
-        <audio
-            src="/assets/audio/"
-            hidden
-            loop
-            autoplay>
-        </audio>
-    </div>
+		<audio src="/assets/audio/" hidden loop autoplay></audio>
+	</div>
 
 	<nav id="navbar" open>
-	<a class="name" href="https://github.com/sirtoby-gore">toby gore</a>
-		<ul` class="links">
+		<a class="name" href="https://sirtoby-gore.github.io/">toby gore</a>
+		<ul class="links">
 			<li><a href="..">BACK</a></li>
 			<li><a href="https://github.com/SirToby-Gore/star-calculator">Star Calculator</a></li>
 		</ul>
 	</nav>
-	
+
 	<main class="stars" id="star-calculator">
 		<form id="measurement-inputs">
 			<label for="inner-radius">Inner Radius</label>
-			<input required pattern="[0-9]{1,}[\.?]{0,1}[0-9]{1,}" name="inner-radius" id="inner-radius" max="50" min="1">
-	
+			<input required pattern="[0-9]{1,}[\.?]{0,1}[0-9]{1,}" name="inner-radius" id="inner-radius" max="50"
+				min="1">
+
 			<label for="outer-radius">Outer Radius</label>
-			<input required pattern="[0-9]{1,}[\.?]{0,1}[0-9]{1,}" name="outer-radius" id="outer-radius" max="50" min="1">
-	
+			<input required pattern="[0-9]{1,}[\.?]{0,1}[0-9]{1,}" name="outer-radius" id="outer-radius" max="50"
+				min="1">
+
 			<label for="number-of-points">Number of Points</label>
 			<input required type="number" name="number-of-points" id="number-of-points" min="3">
-	
+
 			<input type="submit" value="Calculate">
 		</form>
-	
+
 		<div id="output">
 			<div id="star"></div>
 		</div>
-	
+
 	</main>
 
 	<script src="scripts.js"></script>
 	<script src="shooting-stars.js"></script>
 </body>
+
 </html>

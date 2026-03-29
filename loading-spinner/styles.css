@@ -1,0 +1,103 @@
+@keyframes flashGreen {
+  0% {
+    background-color: transparent;
+  }
+  4% {
+    background-color: turquoise;
+  }
+  20% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: transparent;
+  }
+  54% {
+    background-color: lightgreen;
+  }
+  70% {
+    background-color: transparent;
+  }
+}
+body {
+  background-image: url("/assets/images/spinner-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.box {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.box * {
+  color: black;
+}
+.box .form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+  z-index: 1;
+  width: 15rem;
+  aspect-ratio: 1;
+  border: 0.2rem solid rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
+  padding: 0.6rem;
+  background-color: rgba(220, 220, 220, 0.2);
+}
+.box .form h1, .box .form input, .box .form button {
+  padding: 0.6rem;
+  margin: 0;
+}
+.box .form h1 {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 1.6rem;
+}
+.box .form input {
+  border-radius: 0.5rem;
+  background-color: rgba(122, 122, 122, 0.2);
+  width: 90%;
+  font-size: 1rem;
+  border: 2px solid darkgrey;
+}
+.box .form button {
+  background-color: navy;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 5rem;
+  cursor: pointer;
+}
+.box .form button:hover, .box .form button:focus-within {
+  background-color: blue;
+}
+.box .form button:active {
+  background-color: lightblue;
+}
+.box .bar-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+.box .bar-container .bar {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  background-color: transparent;
+  animation: flashGreen var(--animation-length) ease-in-out infinite var(--delay);
+}
+
+/*# sourceMappingURL=styles.css.map */
