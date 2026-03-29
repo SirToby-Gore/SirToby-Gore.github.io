@@ -18,3 +18,10 @@ body:has(main.root) {
 }
 
 
+main.root {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2.8rem;
+	min-height: 70dvh;
+}

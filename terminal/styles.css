@@ -16,63 +16,91 @@ body {
   color: white;
   border: white 0.05rem solid;
   border-radius: 0.1rem;
-  padding: 0.05rem;
+  padding: 0.5rem;
+  padding-top: 1rem;
   min-width: 80%;
   min-height: 80%;
 }
-.terminal .terminal-text {
-  margin-left: 0.5rem;
-}
 .terminal .cursor {
+  background-color: white;
+  color: white;
+  margin-left: 1px;
   display: inline-block;
-  animation: infinite 1.5s cursor-animation;
-  align-self: flex-end;
-  content: "_";
-  width: 0.5rem;
-  height: 1rem;
+  width: 0.6em;
+  height: 1.2em;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
 }
-@keyframes cursor-animation {
-  0% {
-    background-color: white;
-  }
-  49% {
-    background-color: white;
+@keyframes blink {
+  from, to {
+    background-color: transparent;
   }
   50% {
-    background-color: black;
+    background-color: white;
   }
 }
-
-.colour-text {
-  color: red;
+.terminal .terminal-text {
+  font-family: "Courier New", Courier, monospace;
+  background-color: black;
+  color: #00FF00;
+  padding: 0.6rem;
+  white-space: pre-wrap;
 }
-
-.colour-text {
-  color: orange;
+.terminal .prompt-line .user {
+  font-weight: bold;
+  color: blue;
 }
-
-.colour-text {
-  color: yellow;
-}
-
-.colour-text {
+.terminal .prompt-line .path {
+  font-weight: bold;
   color: green;
 }
 
-.colour-text {
+.red-text {
+  color: red;
+}
+
+.orange-text {
+  color: orange;
+}
+
+.yellow-text {
+  color: yellow;
+}
+
+.green-text {
+  color: green;
+}
+
+.blue-text {
   color: blue;
 }
 
-.colour-text {
+.purple-text {
   color: purple;
 }
 
-.colour-text {
+.black-text {
   color: black;
 }
 
-.colour-text {
+.white-text {
   color: white;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.no-bold-text {
+  font-weight: normal;
+}
+
+.italic-text {
+  font-style: italic;
+}
+
+.no-italic-text {
+  font-style: normal;
 }
 
 form {

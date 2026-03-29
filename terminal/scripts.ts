@@ -1,183 +1,514 @@
+/**
+ * TYPE DEFINITIONS
+ */
+type LinuxProgramExit = {
+    stdout: string | null;
+    stderr: string | null;
+    exitCode: number;
+};
 
-function replaceAll(str: string, oldStr: string, newStr: string): string {
-	while (str != str.replace(oldStr, newStr)) {
-		str = str.replace(oldStr, newStr);
+type BinaryFunction = (args: string[]) => LinuxProgramExit;
+
+function strCount(haystack: string, needle: string): number {
+	let count: number = 0;
+
+	for (let index = 0; index < haystack.length - needle.length; index++) {
+		const substring = haystack.substring(index, index + needle.length);
+		
+		if (substring == needle) {
+			count++;
+		}
 	}
 
-	return str;
+	return count
 }
 
-function replaceAllFromArray(str: string, oldNewStr: Array<[string, string]>): string {
-	for (let i = 0; i < oldNewStr.length; i++) {
-		let pair = oldNewStr[i];
+class LinuxFile {
+    constructor(
+        public name: string,
+        public body: string = '',
+        public binary: BinaryFunction | null = null,
+        public isExecutable: boolean = false
+    ) {}
+}
 
-		if (pair.length != 2) {
-			throw new Error('arrays must be the same length')
-		}
-		
-		str = replaceAll(str, pair[0], pair[1]);
-	}
+class LinuxDirectory {
+    public children: (LinuxFile | LinuxDirectory)[] = [];
+    constructor(public name: string, public parent: LinuxDirectory | null = null) {}
 
-	return str;
+    findChild(name: string): LinuxFile | LinuxDirectory | undefined {
+        return this.children.find(child => child.name === name);
+    }
 }
 
 class Terminal {
-	public terminal: HTMLDivElement;
-	public terminalText: HTMLParagraphElement;
-	public history: Array<string> = [];
-	public user: string;
-	public machine: string;
-	public lastDir: string = '~'
-	public currentDir: string = '~';
-	public currentLineInput: string = '';
-	public cursorHtml: string = '<span class="cursor"></span>'
+    private root: LinuxDirectory;
+    private currentDir: LinuxDirectory;
+    private env: Map<string, string> = new Map();
+    private terminalElement: HTMLElement;
+    private user: string;
+    private machine: string;
+	private builtIns: Map<string, BinaryFunction> = new Map();
+	private history: Array<string> = [];
 
-	constructor(user: string, machine: string) {
-		this.user = user;
-		this.machine = machine;
+    constructor(user: string, machine: string, containerId: string) {
+        this.user = user;
+        this.machine = machine;
+        const el = document.getElementById(containerId);
+        if (!el) throw new Error(`Container #${containerId} not found`);
+        this.terminalElement = el;
+
+        // Initialize Filesystem
+        this.root = new LinuxDirectory('/');
+        this.currentDir = this.root;
+
+		this.setUpBuiltIns();
+
+        this.setupFileSystem();
+        
+        // Initialize Environment
+        this.env.set('HOME', '/home/user');
+        this.env.set('USER', user);
+
+        // Start UI
+        this.boot();
+    }
+
+    private setupFileSystem() {
+		const bin = new LinuxDirectory('bin', this.root);
+		this.root.children.push(bin);
+		this.populateBinDirectory(bin);
 		
-		this.terminalText = document.createElement('p');
-		this.terminal = document.createElement('div');
-		this.initTerminal();
-		
-		this.initTerminal();
-		this.initialise();
-	}
+		const opt = new LinuxDirectory('opt', this.root);
+		this.root.children.push(opt);
 
-	public initTerminal() {
-		this.terminal.classList.add('terminal');
+        const home = new LinuxDirectory('home', this.root);
+        const userDir = new LinuxDirectory(this.user, home);
+        const readme = new LinuxFile('readme.txt', 'Welcome! This is a filesystem-driven terminal.\nCommands are files in /bin.');
+        
+        userDir.children.push(readme);
+        home.children.push(userDir);
+        this.root.children.push(home);
 
-		
-		this.terminalText.classList.add('terminal-text');
-		this.terminal.appendChild(this.terminalText);
-		
-		document.body.appendChild(this.terminal);
-	}
+        this.currentDir = userDir;
 
-	public initialise() {
-		this.echo(this.renderMessage(
-			[
-				` __          ________ _      _____ ____  __  __ ______`,
-				` \\ \\        / /  ____| |    / ____/ __ \\|  \\/  |  ____|`,
-				`  \\ \\  /\\  / /| |__  | |   | |   | |  | | \\  / | |__   `,
-				`   \\ \\/  \\/ / |  __| | |   | |   | |  | | |\\/| |  __|  `,
-				`    \\  /\\  /  | |____| |___| |___| |__| | |  | | |____`,
-				`     \\/  \\/   |______|______\\_____\\____/|_|  |_|______|`,
-			].join('\n')	
-		));
-	}
-	
-	public clear() {
-		this.terminalText.innerHTML = '';
-	}
+    }
 
-	public renderMessage(message: string): string {
-		return replaceAllFromArray(
-			message,
-			[
-				[' ', '&nbsp;'],
-				['\t', '&nbsp;&nbsp;&nbsp;&nbsp;'],
-				['\n', '<br>']
-			]
-		);    
-	}
+	private setUpBuiltIns(): void {
+		// cd: Change Directory
+		this.builtIns.set('cd', (args) => {
+			const targetPath = args[0] || '~';
+			const target = this.resolvePath(targetPath);
 
-	public echo(message: string, newLine: boolean = true) {
-		if (newLine && this.terminalText.innerHTML) {
-			this.terminalText.innerHTML += '<br>'
-		}
-		this.terminalText.innerHTML += message;
-	}
-
-	public help() { 
-		const commands: Array<string> = [
-			'help - shows a list of command',
-			'reboot - reboots the computer',
-			'clear - clears the screen',
-			'echo - puts arguments to stdout'
-		];
-
-		for (let i = 0; i < commands.length; i++) { 
-			this.echo(commands[i]);
-		}
-	}
-
-	public async getUserInput(): Promise<string> {
-		return new Promise<string>((resolve) => {
-		  const validCharacters: RegExp = /^[a-z ".~/-0-9]$/i;
-
-		  const userInputField: HTMLSpanElement = document.createElement('span');
-
-		  this.terminalText.appendChild(userInputField);
-	  
-		  const handleKeyDown = (event: KeyboardEvent) => {
-			this.terminalText.innerHTML = this.terminalText.innerHTML.substring(0, this.terminalText.innerHTML.length - this.cursorHtml.length);
-			// console.log(`"${event.key}"`, `valid char: ${validCharacters.test(event.key)}`);
-	  
-			if (event.key === 'Enter') {
-			  	removeEventListener('keydown', handleKeyDown);
-			  	return resolve(userInputField.innerHTML);
+			if (target instanceof LinuxDirectory) {
+				this.currentDir = target;
+				return { stderr: null, stdout: null, exitCode: 0 };
+			} else {
+				return { stderr: `bash: cd: ${targetPath}: No such file or directory`, stdout: null, exitCode: 1 };
 			}
-			else if (validCharacters.test(event.key)) {
-				userInputField.innerHTML += event.key;
-				
-			}
-			else if (event.key === 'Backspace') {
-				userInputField.innerHTML = userInputField.innerHTML.slice(0, -1);
-			}
-
-			this.terminalText.innerHTML += this.cursorHtml;
-		  };
-	  
-		  addEventListener('keydown', handleKeyDown);
 		});
+
+		// echo: Print text (Bash prioritizes its built-in echo over /bin/echo)
+		this.builtIns.set('echo', (args) => {
+			// Handle environment variables like `echo $USER`
+			const output = args.map(arg => {
+				if (arg.startsWith('$')) {
+					const varName = arg.slice(1);
+					return this.env.get(varName) || '';
+				}
+				return arg;
+			}).join(' ');
+			
+			return { stderr: null, stdout: output, exitCode: 0 };
+		});
+
+		// history: Show previously typed commands
+		this.builtIns.set('history', (args) => {
+			const output = this.history.map((cmd, i) => `  ${i + 1}  ${cmd}`).join('\n');
+			return { stderr: null, stdout: output, exitCode: 0 };
+		});
+
+		// export: Set environment variables
+		this.builtIns.set('export', (args) => {
+			if (!args[0] || !args[0].includes('=')) {
+				return { stderr: "bash: export: usage: export VAR=value\nInvalid syntax", stdout: null, exitCode: 1 };
+			}
+			const [key, value] = args[0].split('=');
+			this.env.set(key, value);
+			return { stderr: null, stdout: null, exitCode: 0 };
+		});
+
+		// exit: Close terminal
+		this.builtIns.set('exit', (args) => {
+			this.print('logout');
+			setTimeout(() => window.location.reload(), 500);
+			return { stderr: null, stdout: null, exitCode: 0 };
+		});
+
+		this.builtIns.set('help', (args) => {
+            const output: string[] = [];
+
+            output.push('/white/System Binaries:/end/');
+            const binDir = this.root.findChild('bin') as LinuxDirectory;
+            if (binDir) {
+                output.push(binDir.children.map(c => c.name).join(' '));
+            }
+
+            output.push('\n/white/Shell Builtins:/end/');
+            output.push(Array.from(this.builtIns.keys()).join(' '));
+			
+            output.push('\n/white/Installed Binaries:/end/');
+			const optDir = this.root.findChild('opt') as LinuxDirectory;
+            if (optDir) {
+                output.push(optDir.children.map(c => c.name).join(' '));
+            }
+
+            return {
+                exitCode: 0,
+                stderr: null,
+                stdout: output.join('\n'),
+            };
+        });
+
+        // Fixed install command
+        this.builtIns.set('install', (args) => {
+			if (args.length === 0) {
+				return { stdout: null, stderr: `usage: install [URL]`, exitCode: 1 };
+            }
+			
+            // Using a standard loop so we can return a valid LinuxProgramExit
+            for (const url of args) {
+                const request = new XMLHttpRequest();
+                request.open('GET', `${url}/header.json`, false);
+
+                try {
+                    request.send(null);
+                    if (request.status !== 200) {
+                        return { stdout: null, stderr: `Could not find package at ${url}`, exitCode: 2 };
+                    }
+
+                    const data = JSON.parse(request.responseText);
+                    const name = data.name; // Fixed: JSON objects use dot notation, not .get()
+                    const mainFile = data.main;
+
+                    if (!name || !mainFile) {
+                        return { stdout: null, stderr: `Invalid package manifest at ${url}`, exitCode: 3 };
+                    }
+
+                    // Check if already installed
+                    const opt = this.root.findChild('opt') as LinuxDirectory;
+                    if (opt.findChild(name)) {
+                        return { stdout: null, stderr: `Package ${name} is already installed`, exitCode: 5 };
+                    }
+
+                    // Fetch the actual binary body
+                    const packageRequest = new XMLHttpRequest();
+                    packageRequest.open('GET', `${url}/${mainFile}`, false);
+                    packageRequest.send(null);
+
+                    if (packageRequest.status === 200) {
+                        opt.children.push(new LinuxFile(name, packageRequest.responseText));
+                        return { stdout: `Successfully installed ${name}`, stderr: null, exitCode: 0 };
+                    }
+                } catch (e) {
+                    return { stdout: null, stderr: 'Network error during installation', exitCode: 2 };
+                }
+            }
+
+            return { stdout: null, stderr: "Installation failed", exitCode: 1 };
+        });
 	}
 
-	public async inputLine(): Promise<void> {
-		this.echo(`${this.user}@${this.machine}: ${this.currentDir} $ `);
+	private system(line: string): LinuxProgramExit {
+		const [cmd, ...args] = line.split(/\s+/);
 
-		const userInput = await this.getUserInput();
+		const builtIn = this.builtIns.get(cmd);
+		if (builtIn) {
+			return builtIn(args);
+		}
 
-		this.history.push(userInput);
+        const binDir = this.root.findChild('bin') as LinuxDirectory;
+        const program = binDir.findChild(cmd);
+        if (program instanceof LinuxFile && program.binary) {
+            return program.binary(args);
+        }
 
-		if (userInput == 'reboot') {
-			this.echo('rebooting');
-	
-			setTimeout(() => {
-				window.location.href = window.location.href;
-			}, 1000);
+		const optDir = this.root.findChild('opt') as LinuxDirectory;
+		const optProgram = optDir.findChild(cmd) as LinuxFile || null;
+		if (optProgram) {
+			let stdout: string | null = null;
+			let stderr: string | null = null;
+			let exitCode: number = 0;
+			const result = eval(optProgram.body);
+			return {
+				stdout: stdout,
+				stderr: stderr,
+				exitCode: exitCode,
+			};
+		}
 
-			for (let i = 1; i < 4; i++) {
-				setTimeout(() => {
-					this.echo('.', false);
-				}, i * 250)
+		return {
+			stdout: null,
+			stderr: `bash: ${cmd}: command not found`,
+			exitCode: 1,
+		};
+	}
+
+	private populateBinDirectory(binDir: LinuxDirectory): void {
+		const commands: Record<string, BinaryFunction> = {
+			// ls: List directory contents
+			'ls': (args) => {
+				const targetPath = args[0] || '.';
+				const target = this.resolvePath(targetPath);
+
+				if (target instanceof LinuxDirectory) {
+					const list = target.children.map(c => 
+						c instanceof LinuxDirectory ? `/blue/${c.name}//end/` : `/white/${c.name}/end/`
+					).join('  ');
+					return { stdout: list, stderr: null, exitCode: 0 };
+				}
+				return { stdout: null, stderr: `ls: cannot access '${targetPath}': No such file or directory`, exitCode: 1 };
+			},
+
+			// cat: Read file contents
+			'cat': (args) => {
+				if (!args[0]) return { stdout: null, stderr: 'No file', exitCode: 1 };
+				const file = this.resolvePath(args[0]);
+				if (file instanceof LinuxFile) {
+					return { stdout: file.body, stderr: null, exitCode: 0 };
+				}
+				return { stdout: null, stderr: 'Not found', exitCode: 1 };
+			},
+
+			// mkdir: Create a directory
+			'mkdir': (args) => {
+				if (!args[0]) {
+					return { stdout: null, stderr: 'mkdir: missing operand', exitCode: 1 };
+				}
+				const dirName = args[0];
+				// Prevent duplicates
+				if (this.currentDir.findChild(dirName)) {
+					return { stdout: null, stderr: `mkdir: cannot create directory '${dirName}': File exists\nFile exists`, exitCode: 1 };
+				}
+				this.currentDir.children.push(new LinuxDirectory(dirName, this.currentDir));
+				return { stdout: null, stderr: null, exitCode: 0 };
+			},
+
+			// touch: Create an empty file
+			'touch': (args) => {
+				if (!args[0]) {
+					return { stdout: null, stderr: 'touch: missing file operand', exitCode: 1 };
+				}
+				const fileName = args[0];
+				if (!this.currentDir.findChild(fileName)) {
+					this.currentDir.children.push(new LinuxFile(fileName, ''));
+				}
+				return { stdout: null, stderr: null, exitCode: 0 };
+			},
+
+			// rm: Remove a file (or directory if we implemented -rf)
+			'rm': (args) => {
+				if (!args[0]) {
+					return { stdout: null, stderr: 'rm: missing operand', exitCode: 1 };
+				}
+				const target = this.resolvePath(args[0]);
+				if (!target) {
+					return { stdout: null, stderr: `rm: cannot remove '${args[0]}': No such file or directory`, exitCode: 1 };
+				}
+				if (target instanceof LinuxDirectory) {
+					return { stdout: null, stderr: `rm: cannot remove '${args[0]}': Is a directory`, exitCode: 1 };
+				}
+				
+				// Remove the file from its parent's children array
+				const parent = this.currentDir; // Simplification: assuming local file for now
+				parent.children = parent.children.filter(c => c.name !== target.name);
+				return { stdout: null, stderr: null, exitCode: 0 };
+			},
+
+			// clear: Clear the screen
+			'clear': (args) => {
+				this.terminalElement.innerHTML = '';
+				return { stdout: null, stderr: null, exitCode: 0 };
+			},
+
+			// whoami: Print current user
+			'whoami': (args) => {
+				const user = this.env.get('USER') || this.user;
+				return { stdout: user, stderr: null, exitCode: 0 };
+			},
+
+			// date: Print current date and time
+			'date': (args) => {
+				const now = new Date().toString();
+				return { stdout: now, stderr: null, exitCode: 0 };
+			},
+
+			// pwd: Print Working Directory
+			'pwd': (args) => {
+				const path = this.getFullPath(this.currentDir);
+				return { stderr: null, stdout: path, exitCode: 0 };
+			},
+		};
+
+		// Convert the dictionary into actual LinuxFile instances
+		for (const [name, func] of Object.entries(commands)) {
+			binDir.children.push(new LinuxFile(name, 'ELF 64-bit LSB executable', func, true));
+		}
+	}
+
+    private getFullPath(dir: LinuxDirectory): string {
+        let path = '';
+        let curr: LinuxDirectory | null = dir;
+        while (curr && curr.name !== '/') {
+            path = '/' + curr.name + path;
+            curr = curr.parent;
+        }
+        return path || '/';
+    }
+
+    private resolvePath(path: string): LinuxFile | LinuxDirectory | null {
+        if (path === '/') return this.root;
+        if (path === '~') return this.resolvePath(this.env.get('HOME') || '/');
+
+        const parts = path.split('/').filter(p => p !== '');
+        let current = path.startsWith('/') ? this.root : this.currentDir;
+
+        for (const part of parts) {
+            if (part === '.') continue;
+            if (part === '..') {
+                if (current.parent) current = current.parent;
+                continue;
+            }
+            if (current instanceof LinuxDirectory) {
+                const next = current.findChild(part);
+                if (!next) return null;
+                current = next as any;
+            } else {
+                return null;
+            }
+        }
+        return current;
+    }
+
+    private renderForHtml(message: string): string {
+        let rendered = message
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('\\', '&#92;')
+            .replaceAll('\t', '&nbsp;&nbsp;&nbsp;&nbsp;')
+            .replaceAll('\n', '<br>')
+            .replaceAll(' ', '&nbsp;')
+			.replaceAll('/end/', '</span>')
+			.replaceAll('/red', '<span class="red-text">')
+			.replaceAll('/orange', '<span class="orange-text">')
+			.replaceAll('/yellow', '<span class="yellow-text">')
+			.replaceAll('/green/', '<span class="green-text">')
+			.replaceAll('/blue/', '<span class="blue-text">')
+			.replaceAll('/purple', '<span class="purple-text">')
+			.replaceAll('/black', '<span class="black-text">')
+			.replaceAll('/white/', '<span class="white-text">');
+
+		while (strCount(message, '<span ') > strCount(message, '</span>')) {
+			message += '</span>';
+		}
+
+        return rendered;
+    }
+
+    private print(message: string, isPrompt: boolean = false, render: boolean = true) {
+        const div = document.createElement('div');
+        div.className = isPrompt ? 'prompt-line' : 'output-line';
+
+		message = render ? this.renderForHtml(message) : message
+        
+        if (!isPrompt) {
+            div.innerHTML = message;
+        } else {
+            div.innerHTML = message;
+        }
+        
+        this.terminalElement.appendChild(div);
+        this.terminalElement.scrollTop = this.terminalElement.scrollHeight;
+    }
+
+    private async boot() {
+        this.print(` __          ________ _      _____ ____  __  __ ______`);
+        this.print(` \\ \\        / /  ____| |    / ____/ __ \\|  \\/  |  ____|`);
+        this.print(`  \\ \\  /\\  / /| |__  | |   | |   | |  | | \\  / | |__   `);
+        this.print(`   \\ \\/  \\/ / |  __| | |   | |   | |  | | |\\/| |  __|  `);
+        this.print(`    \\  /\\  /  | |____| |___| |___| |__| | |  | | |____`);
+        this.print(`     \\/  \\/   |______|______\\_____\\____/|_|  |_|______|`);
+        this.print('\nSystem initialized. Type "help" for commands.');
+
+		// await this.execute('install https://sir.toby-gore.github.io/terminal/example-mod');
+
+        this.loop();
+    }
+
+    private async loop() {
+		while (true) {
+			try {
+				const path = this.getFullPath(this.currentDir);
+				const promptHtml = `/green/${this.user}@${this.machine}/end/:/blue/${path}/end/$ `;
+				this.print(promptHtml, true);
+				
+				const input = await this.readInput();
+				await this.execute(input);
+			} catch (e) {
+				this.print(`an error occurred ${e}`)
 			}
+		}
+    }
 
+    private readInput(): Promise<string> {
+        return new Promise((resolve) => {
+            const inputWrapper = document.createElement('span');
+            const textContent = document.createElement('span');
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            cursor.innerHTML = '&nbsp;';
+
+            inputWrapper.appendChild(textContent);
+            inputWrapper.appendChild(cursor);
+            
+            const lines = this.terminalElement.querySelectorAll('.prompt-line');
+            const lastLine = lines[lines.length - 1];
+            if (lastLine) {
+                lastLine.appendChild(inputWrapper);
+            }
+
+            const handleKey = (e: KeyboardEvent) => {
+                if (e.key === 'Enter') {
+                    window.removeEventListener('keydown', handleKey);
+                    cursor.remove();
+                    resolve(textContent.innerText);
+                } else if (e.key === 'Backspace') {
+                    textContent.innerText = textContent.innerText.slice(0, -1);
+                } else if (e.key.length === 1) {
+                    textContent.innerText += e.key;
+                }
+                this.terminalElement.scrollTop = this.terminalElement.scrollHeight;
+            };
+
+            window.addEventListener('keydown', handleKey);
+        });
+    }
+
+    private async execute(rawLine: string) {
+        const line = rawLine.trim();
+        if (!line) return;
+
+		const {stdout, stderr, exitCode} = this.system(line);
+		
+		if (stderr) {
+			this.print(stderr);
 			return;
 		}
-		else if (userInput == 'clear') {
-			this.clear();
-		}
-		else if (userInput == 'help') {
-			this.help();
-		}
-		else if (userInput.startsWith('echo ')) {
-			this.echo(userInput.split(' ').slice(1).join(' '));
-		}
-		else if (userInput.startsWith('cd ') && userInput.split(' ')[1].length >= 1) {
-			this.currentDir = userInput.split(' ')[1];
-		}
-		// else if ()
-		else {
-			this.echo(`command not found: ${userInput}`);
-		}
 
-		this.inputLine();
-	}
+		if (stdout) {
+			this.print(stdout);
+		}
+    }
 }
 
-const terminal = new Terminal('user', 'linux');
-
-terminal.inputLine()
-
-
+new Terminal('user', 'linux', 'app');

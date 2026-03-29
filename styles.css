@@ -81,6 +81,14 @@ body:has(main.root) {
   z-index: -1;
 }
 
+main.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.8rem;
+  min-height: 70dvh;
+}
+
 @media (max-width: 650px) {
   main.cv {
     padding-left: 1rem;
@@ -89,6 +97,13 @@ body:has(main.root) {
   #navbar .links {
     flex-direction: column;
   }
+}
+footer {
+  align-items: center;
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  width: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

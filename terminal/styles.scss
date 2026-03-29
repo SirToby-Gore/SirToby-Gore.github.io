@@ -24,32 +24,49 @@ body {
 	border: $text-colour 0.05rem solid;
 	border-radius: 0.1rem;
 
-	padding: 0.05rem;
+	padding: 0.5rem;
+	padding-top: 1rem;
 
 	min-width: 80%;
 	min-height: 80%;
 
-	.terminal-text {
-		margin-left: 0.5rem;
-	}
 	.cursor {
+		background-color: white;
+		color: white;
+		margin-left: 1px;
 		display: inline-block;
-		animation: infinite 1.5s cursor-animation;
-		align-self: flex-end;
-		content: '_';
-		width: 0.5rem;
-		height: 1rem;
+		width: 0.6em;
+		height: 1.2em;
+		vertical-align: middle;
+		animation: blink 1s step-end infinite;
 	}
 
-	@keyframes cursor-animation {
-		0% {
-			background-color: $text-colour;
-		}
-		49% {
-			background-color: $text-colour;
+	@keyframes blink {
+		from, to {
+			background-color: transparent;
 		}
 		50% {
-			background-color: $terminal-background-colour;
+			background-color: white;
+		}
+	}
+
+	.terminal-text {
+		font-family: 'Courier New', Courier, monospace;
+		background-color: black;
+		color: #00FF00;
+		padding: 0.6rem;
+		white-space: pre-wrap;
+
+	}
+
+	.prompt-line {
+		.user {
+			font-weight: bold;
+			color: blue;
+		}
+		.path {
+			font-weight: bold;
+			color: green;
 		}
 	}
 }
@@ -66,9 +83,25 @@ $terminal-colours: (
 );
 
 @each $colour, $value in $terminal-colours{
-	.#{colour}-text {
+	.#{$colour}-text {
 		color: $value;
 	}
+}
+
+.bold-text {
+	font-weight: bold;
+}
+
+.no-bold-text {
+	font-weight: normal;
+}
+
+.italic-text {
+	font-style: italic;
+}
+
+.no-italic-text {
+	font-style: normal;
 }
 
 form {
