@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shithead: Fixed Layout</title>
+    <style>
+        :root {
+            --bg: #1a472a;
+            --p1-ui: #3498db;
+            --p2-ui: #e67e22;
+            --accent: #f1c40f;
+            --card-w: 75px;
+            --card-h: 105px;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Overlay for Turn Transitions */
+        #turn-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #board {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 95%;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .player-zone {
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(0,0,0,0.2);
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .active-p0 { border-color: var(--p1-ui); box-shadow: 0 0 20px rgba(52, 152, 219, 0.3); }
+        .active-p1 { border-color: var(--p2-ui); box-shadow: 0 0 20px rgba(230, 126, 34, 0.3); }
+
+        /* The Card Grid Fix */
+        .hand-row {
+            display: flex;
+            gap: 10px; /* Spacing between cards */
+            justify-content: center;
+            min-height: 120px;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+
+        .table-row {
+            display: flex;
+            gap: 25px; /* Spacing between the 3 card stacks */
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        /* Individual Card Container for Table Stacks */
+        .card-slot {
+            position: relative;
+            width: var(--card-w);
+            height: var(--card-h);
+        }
+
+        .card {
+            width: var(--card-w);
+            height: var(--card-h);
+            background: white;
+            color: black;
+            border-radius: 8px;
+            border: 1px solid #999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 2px 4px 6px rgba(0,0,0,0.3);
+            user-select: none;
+            position: relative; /* Default for hand cards */
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.4);
+            z-index: 50;
+        }
+
+        .card.selected {
+            outline: 4px solid var(--accent);
+            transform: translateY(-15px);
+        }
+
+        /* Specific positioning for Table Stacks */
+        .card.down { position: absolute; top: 5px; left: 0; z-index: 1; }
+        .card.up { position: absolute; top: -5px; left: 0; z-index: 2; }
+        .card.back { background: #2c3e50; color: transparent; border: 2px solid white; cursor: default; }
+        .card.red { color: #d63031; }
+
+        /* Center Area */
+        #center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin: 10px 0;
+        }
+
+        .pile-target {
+            width: var(--card-w);
+            height: var(--card-h);
+            border: 3px dashed rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-weight: bold;
+            cursor: pointer;
+            background: var(--accent);
+            border: none;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+
+        .swap-instruction {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div id="turn-overlay">
+    <h1 id="ov-title">SHITHEAD</h1>
+    <p id="ov-msg">Get Ready...</p>
+    <button onclick="hideOverlay()">Let's Go</button>
+</div>
+
+<div id="board">
+    <div id="zone-1" class="player-zone">
+        <div class="table-row" id="table-1"></div>
+        <div class="hand-row" id="hand-1"></div>
+    </div>
+
+    <div id="center">
+        <div>Deck: <span id="deck-count">0</span></div>
+        <div class="pile-target" id="pile-display"></div>
+        <div><button id="action-btn" onclick="initGame()">New Game</button></div>
+    </div>
+
+    <div id="zone-0" class="player-zone">
+        <div class="hand-row" id="hand-0"></div>
+        <div class="table-row" id="table-0"></div>
+    </div>
+</div>
+
+<div id="status-bar" class="swap-instruction">
+    Press "New Game" to shuffle and deal.
+</div>
+
+<script>
+const RANKS = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+const VALUES = { "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9, "10":10, "J":11, "Q":12, "K":13, "A":14 };
+const SUITS = ["♠", "♣", "♥", "♦"];
+
+let deck = [], pile = [], currentPlayer = 0, isSwapPhase = true, gameActive = false;
+let players = [ { hand: [], up: [], down: [] }, { hand: [], up: [], down: [] } ];
+let selectedSwap = null;
+
+function initGame() {
+    deck = []; pile = []; currentPlayer = 0; isSwapPhase = true; gameActive = true;
+    for(let s of SUITS) for(let r of RANKS) deck.push({r, s, v:VALUES[r], color:(s==="♥"||s==="♦"?"red":"black")});
+    shuffle(deck);
+
+    players.forEach(p => {
+        p.down = deck.splice(0, 3);
+        p.up = deck.splice(0, 3);
+        p.hand = deck.splice(0, 3);
+    });
+
+    document.getElementById('action-btn').innerText = "End Swap Phase";
+    document.getElementById('action-btn').onclick = confirmTable;
+    showOverlay("SWAP PHASE", "Player 1: Set your table. Swap cards between hand and face-up slots.");
+    updateUI();
+}
+
+function confirmTable() {
+    if (currentPlayer === 0) {
+        currentPlayer = 1;
+        showOverlay("SWAP PHASE", "Player 2: Your turn to swap cards.");
+        updateUI();
+    } else {
+        isSwapPhase = false;
+        currentPlayer = 0;
+        document.getElementById('action-btn').innerText = "Pick Up Pile";
+        document.getElementById('action-btn').onclick = pickUpPile;
+        document.getElementById('status-bar').innerText = "Game Started! Rules: 2 Reset, 4 Ghost, 7 Under, 10 Burn.";
+        showOverlay("GAME START", "Player 1 begins.");
+        updateUI();
+    }
+}
+
+function handleCardClick(pIdx, type, cIdx) {
+    if (!gameActive || pIdx !== currentPlayer) return;
+    const p = players[pIdx];
+
+    if (isSwapPhase) {
+        handleSwapLogic(type, cIdx);
+        return;
+    }
+
+    if (p.hand.length > 0) {
+        if (type !== 'hand') return;
+        attemptPlay(p, 'hand', cIdx);
+    } else if (p.up.length > 0) {
+        if (type !== 'up') return;
+        attemptPlay(p, 'up', cIdx);
+    } else if (p.down.length > 0) {
+        if (type !== 'down') return;
+        const card = p.down[cIdx];
+        p.down.splice(cIdx, 1);
+        pile.push(card);
+        if (!canPlay(card)) {
+            updateUI();
+            setTimeout(() => { alert(`Blind card was ${card.r}. Invalid! You pick up.`); pickUpPile(); }, 300);
+        } else {
+            processCardEffect(card, p);
+        }
+    }
+}
+
+function handleSwapLogic(type, idx) {
+    if (type === 'down') return;
+    if (!selectedSwap) {
+        selectedSwap = { type, idx };
+    } else {
+        const p = players[currentPlayer];
+        const cardA = p[selectedSwap.type][selectedSwap.idx];
+        const cardB = p[type][idx];
+        p[selectedSwap.type][selectedSwap.idx] = cardB;
+        p[type][idx] = cardA;
+        selectedSwap = null;
+    }
+    updateUI();
+}
+
+function attemptPlay(player, type, idx) {
+    const card = player[type][idx];
+    if (canPlay(card)) {
+        player[type].splice(idx, 1);
+        pile.push(card);
+        processCardEffect(card, player);
+    } else {
+        alert("Can't play that!");
+    }
+}
+
+function processCardEffect(card, player) {
+    if (card.r === "10") {
+        pile = [];
+        drawBack(player);
+        if(!checkWin()) updateUI();
+    } else {
+        drawBack(player);
+        if(!checkWin()) {
+            currentPlayer = (currentPlayer === 0) ? 1 : 0;
+            showOverlay("Next Player", `It's Player ${currentPlayer + 1}'s turn.`);
+            updateUI();
+        }
+    }
+}
+
+function canPlay(card) {
+    if (!pile.length || card.r === "2" || card.r === "4" || card.r === "10") return true;
+    let top = null;
+    for (let i = pile.length - 1; i >= 0; i--) {
+        if (pile[i].r !== "4") { top = pile[i]; break; }
+    }
+    if (!top) return true;
+    return (top.r === "7") ? (card.v <= 7) : (card.v >= top.v);
+}
+
+function pickUpPile() {
+    players[currentPlayer].hand.push(...pile);
+    pile = [];
+    currentPlayer = (currentPlayer === 0) ? 1 : 0;
+    showOverlay("Turn Passed", `Player ${currentPlayer + 1} is up.`);
+    updateUI();
+}
+
+function drawBack(p) {
+    while (p.hand.length < 3 && deck.length > 0) p.hand.push(deck.pop());
+}
+
+function shuffle(a) { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
+
+function updateUI() {
+    renderPlayer(0); renderPlayer(1);
+    document.getElementById('deck-count').innerText = deck.length;
+    const pDisp = document.getElementById('pile-display');
+    pDisp.innerHTML = '';
+    if (pile.length) {
+        const top = pile[pile.length - 1];
+        pDisp.innerHTML = `<div class="card ${top.color}"><span>${top.r}</span><span>${top.s}</span></div>`;
+    }
+}
+
+function renderPlayer(idx) {
+    const p = players[idx];
+    const isCurrent = idx === currentPlayer;
+    const zone = document.getElementById(`zone-${idx}`);
+    zone.className = `player-zone ${isCurrent ? 'active-p' + idx : ''}`;
+
+    const handDiv = document.getElementById(`hand-${idx}`);
+    handDiv.innerHTML = '';
+    p.hand.forEach((c, i) => {
+        const div = document.createElement('div');
+        div.className = `card ${isCurrent ? c.color : 'back'}`;
+        div.innerHTML = isCurrent ? `<span>${c.r}</span><span>${c.s}</span>` : '';
+        if (isCurrent && selectedSwap?.type === 'hand' && selectedSwap?.idx === i) div.classList.add('selected');
+        div.onclick = () => handleCardClick(idx, 'hand', i);
+        handDiv.appendChild(div);
+    });
+
+    const tableDiv = document.getElementById(`table-${idx}`);
+    tableDiv.innerHTML = '';
+    for (let i = 0; i < 3; i++) {
+        const stack = document.createElement('div');
+        stack.className = 'card-slot';
+        if (p.down[i]) {
+            const d = document.createElement('div');
+            d.className = 'card back down';
+            d.onclick = () => handleCardClick(idx, 'down', i);
+            stack.appendChild(d);
+        }
+        if (p.up[i]) {
+            const u = document.createElement('div');
+            u.className = `card up ${p.up[i].color}`;
+            u.innerHTML = `<span>${p.up[i].r}</span><span>${p.up[i].s}</span>`;
+            if (isCurrent && selectedSwap?.type === 'up' && selectedSwap?.idx === i) u.classList.add('selected');
+            u.onclick = () => handleCardClick(idx, 'up', i);
+            stack.appendChild(u);
+        }
+        tableDiv.appendChild(stack);
+    }
+}
+
+function showOverlay(title, msg) {
+    document.getElementById('ov-title').innerText = title;
+    document.getElementById('ov-msg').innerText = msg;
+    document.getElementById('turn-overlay').style.display = 'flex';
+}
+function hideOverlay() { document.getElementById('turn-overlay').style.display = 'none'; }
+
+function checkWin() {
+    const p = players[currentPlayer];
+    if (p.hand.length === 0 && p.up.length === 0 && p.down.length === 0) {
+        alert(`GAME OVER! PLAYER ${currentPlayer + 1} WON!`);
+        gameActive = false;
+        return true;
+    }
+    return false;
+}
+</script>
+</body>
+</html>
