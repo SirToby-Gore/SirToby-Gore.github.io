@@ -1,0 +1,29 @@
+#rich-stdout-terminal {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    *,
+    * * {
+        padding: 0;
+        margin: 0;
+
+        background-color: --background-colour;
+        color: --text-colour;
+        font-weight: --font-weight;
+        font-style: --font-style;
+    }
+    
+    .row {
+        display: flex;
+        flex-direction: row;
+
+        .cell {
+            display: inline-block;
+            width: 0.5rem;
+            height: 1rem;
+        }
+    }
+}

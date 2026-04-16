@@ -115,6 +115,11 @@ class Terminal {
         // exit: Close terminal
         this.builtIns.set('exit', (args) => {
             this.print('logout');
+            setTimeout(() => window.location.href = '/', 500);
+            return { stderr: null, stdout: null, exitCode: 0 };
+        });
+        this.builtIns.set('reboot', (args) => {
+            this.print('rebooting');
             setTimeout(() => window.location.reload(), 500);
             return { stderr: null, stdout: null, exitCode: 0 };
         });
@@ -343,13 +348,13 @@ class Terminal {
             .replaceAll('\n', '<br>')
             .replaceAll(' ', '&nbsp;')
             .replaceAll('/end/', '</span>')
-            .replaceAll('/red', '<span class="red-text">')
-            .replaceAll('/orange', '<span class="orange-text">')
-            .replaceAll('/yellow', '<span class="yellow-text">')
+            .replaceAll('/red/', '<span class="red-text">')
+            .replaceAll('/orange/', '<span class="orange-text">')
+            .replaceAll('/yellow/', '<span class="yellow-text">')
             .replaceAll('/green/', '<span class="green-text">')
             .replaceAll('/blue/', '<span class="blue-text">')
-            .replaceAll('/purple', '<span class="purple-text">')
-            .replaceAll('/black', '<span class="black-text">')
+            .replaceAll('/purple/', '<span class="purple-text">')
+            .replaceAll('/black/', '<span class="black-text">')
             .replaceAll('/white/', '<span class="white-text">');
         while (strCount(message, '<span ') > strCount(message, '</span>')) {
             message += '</span>';
@@ -369,15 +374,51 @@ class Terminal {
         this.terminalElement.appendChild(div);
         this.terminalElement.scrollTop = this.terminalElement.scrollHeight;
     }
-    async boot() {
-        this.print(` __          ________ _      _____ ____  __  __ ______`);
-        this.print(` \\ \\        / /  ____| |    / ____/ __ \\|  \\/  |  ____|`);
-        this.print(`  \\ \\  /\\  / /| |__  | |   | |   | |  | | \\  / | |__   `);
-        this.print(`   \\ \\/  \\/ / |  __| | |   | |   | |  | | |\\/| |  __|  `);
-        this.print(`    \\  /\\  /  | |____| |___| |___| |__| | |  | | |____`);
-        this.print(`     \\/  \\/   |______|______\\_____\\____/|_|  |_|______|`);
-        this.print('\nSystem initialized. Type "help" for commands.');
-        // await this.execute('install https://sir.toby-gore.github.io/terminal/example-mod');
+    boot() {
+        const bootLogs = [
+            "] Linux version 6.5.0-generic (gcc version 12.3.0)/end/",
+            "] Command line: BOOT_IMAGE=/boot/vmlinuz-linux root=UUID=... ro quiet",
+            "] CPU0: Intel(R) Core(TM) i7-12700K @ 3.60GHz",
+            "] Initializing Memory Management System...",
+            "] pci 0000:00:00.0: [8086:4610] rev 07",
+            "] usbcore: registered new interface driver usb-storage",
+            "] EXT4-fs (sda1): mounted filesystem with ordered data mode",
+            "] /green/OK/end/ Started User Manager for UID 1000.",
+            "] /green/OK/end/ Finished Record System Boot/Shutdown Settings.",
+            "] /green/OK/end/ Reached target /blue/Multi-User System/end/.",
+            "] /green/OK/end/ Reached target /blue/Graphical Interface/end/.",
+            "] /white/System initialized./end/"
+        ];
+        const nowDate = Date.now();
+        let bootLogIndex = 0;
+        const timeOutFunc = () => {
+            if (bootLogIndex >= bootLogs.length) {
+                return setTimeout(() => {
+                    this.execute('clear');
+                    this.finalizeBoot();
+                }, 500);
+            }
+            this.print(`[${((Date.now() - nowDate) / 100).toPrecision(6).toString().padStart(10, ' ')}${bootLogs[bootLogIndex]}`);
+            bootLogIndex++;
+            setTimeout(() => timeOutFunc(), 100 + Math.random() * 500);
+        };
+        timeOutFunc();
+    }
+    finalizeBoot() {
+        try {
+            const request = new XMLHttpRequest();
+            request.open('GET', 'welcome.txt', false);
+            request.send(null);
+            if (request.status === 200) {
+                this.print(request.responseText);
+            }
+        }
+        catch (e) {
+            // Fallback if welcome.txt is missing
+            this.print("/orange/[WARN] welcome.txt not found/end/");
+        }
+        this.print('Type "/yellow/help/end/" for commands.\n');
+        // Start the input loop
         this.loop();
     }
     async loop() {
