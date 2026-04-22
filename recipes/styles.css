@@ -3,15 +3,15 @@
 }
 
 html {
-  background: #0f172a;
+  background: #feffcb;
   height: 100%;
 }
 
 body {
   margin: 0;
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #0f172a;
-  color: white;
+  background: #feffcb;
+  color: #ffffff;
   line-height: 1.6;
   font-size: 18px;
   min-height: 100dvh;
@@ -22,7 +22,7 @@ body {
   flex-direction: column;
   gap: 0.8rem;
   padding: 1rem;
-  background: #020617;
+  background: rgb(253.0192307692, 255, 152);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -31,36 +31,36 @@ body {
 .nav .logo {
   font-weight: bold;
   cursor: pointer;
-  color: #22c55e;
+  color: #006b27;
   font-size: 1.2rem;
 }
 .nav input {
   width: 100%;
-  background: #111827;
-  border: 2px solid #334155;
-  color: white;
+  background: rgb(252.0384615385, 255, 101);
+  border: 2px solid #003805;
+  color: #000000;
   padding: 0.9rem 1rem;
   font-size: 1rem;
   border-radius: 8px;
 }
 .nav input:focus {
   outline: none;
-  border-color: #22c55e;
+  border-color: #006b27;
 }
 .nav .nav-right {
   display: flex;
   justify-content: flex-end;
 }
 .nav .nav-right button {
-  background: #1e293b;
-  border: 1px solid #334155;
-  color: white;
+  background: #006b27;
+  border: 1px solid #003805;
+  color: #ffffff;
   padding: 0.6rem 1rem;
   border-radius: 8px;
   cursor: pointer;
 }
 .nav .nav-right button:hover {
-  border-color: #22c55e;
+  border-color: #006b27;
 }
 @media (min-width: 768px) {
   .nav {
@@ -99,7 +99,7 @@ body {
 }
 
 .tile {
-  background: #1e293b;
+  background: rgb(254.4903846154, 255, 228.5);
   padding: 1.5rem;
   border-radius: 12px;
   border: 2px solid transparent;
@@ -110,44 +110,45 @@ body {
 .tile h3 {
   margin: 0;
   font-size: 1.3rem;
-  color: #22c55e;
+  color: #006b27;
 }
 .tile p {
   font-size: 0.85rem;
   opacity: 0.75;
   margin: 0 0 0.8rem 0;
-  color: #94a3b8;
+  color: #5c6572;
 }
 .tile button {
   width: 100%;
   border: none;
   padding: 0.6rem;
-  background: #22c55e;
-  color: black;
+  background: #006b27;
+  color: #000000;
   cursor: pointer;
   border-radius: 6px;
   font-weight: bold;
 }
 .tile button:hover, .tile button:focus-within {
-  background: rgb(30.2467532468, 175.2532467532, 83.6233766234);
+  background: rgb(0, 81.5, 29.7056074766);
 }
 .tile button:active {
-  background: rgb(22.7402597403, 131.7597402597, 62.8701298701);
+  background: rgb(0, 30.5, 11.1168224299);
 }
 .tile:active {
-  background: rgb(38.595505618, 52.7471910112, 75.904494382);
+  background: rgb(254.9807692308, 255, 254);
 }
 @media (min-width: 1024px) {
   .tile {
     transition: transform 0.2s;
   }
   .tile:hover {
-    border-color: #22c55e;
+    border-color: #006b27;
     transform: translateY(-5px);
   }
 }
 
 .full {
+  color: #000000;
   padding: 1.5rem;
   max-width: 800px;
   margin: 0 auto;
@@ -155,22 +156,24 @@ body {
 .full h1 {
   font-size: 2rem;
   margin: 1rem 0;
+  color: #000000;
 }
 .full .recipe-desc {
-  color: #94a3b8;
+  color: #5c6572;
   margin-bottom: 2rem;
 }
 .full .back-link {
   background: transparent;
-  border: 1px solid #334155;
-  color: white;
+  border: 1px solid transparent;
+  color: #000000;
   padding: 0.5rem 1rem;
   border-radius: 6px;
   margin-bottom: 1rem;
   cursor: pointer;
 }
 .full .primary-btn {
-  background: #22c55e;
+  background: #006b27;
+  color: #000000;
   width: 100%;
   padding: 1rem;
   border: none;
@@ -181,6 +184,7 @@ body {
 }
 .full ul,
 .full ol {
+  color: #000000;
   padding-left: 1.2rem;
 }
 .full ul li,
@@ -198,9 +202,9 @@ body {
 .controls .clear-btn {
   width: 100%;
   padding: 1rem;
-  background: #1e293b;
-  color: white;
-  border: 2px solid #334155;
+  background: rgb(253.0192307692, 255, 152);
+  color: #000000;
+  border: 2px solid #003805;
   border-radius: 8px;
   font-size: 1rem;
 }
@@ -211,7 +215,7 @@ body {
 }
 
 .basket-recipes-list {
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid #003805;
   padding-bottom: 1rem;
   margin-bottom: 2rem;
 }
@@ -224,15 +228,20 @@ body {
 }
 .basket-recipe-row .recipe-name {
   flex: 1;
+  color: #000000;
+}
+.basket-recipe-row .recipe-name .count {
+  color: #94a3b8;
+  font-style: italic;
 }
 .basket-recipe-row .qty-btns {
   display: flex;
   gap: 0.4rem;
 }
 .basket-recipe-row .qty-btns button {
-  background: #1e293b;
-  border: 1px solid #334155;
-  color: white;
+  background: rgb(253.0192307692, 255, 152);
+  border: 1px solid #003805;
+  color: #000000;
   padding: 0.4rem 0.8rem;
   border-radius: 4px;
   cursor: pointer;
@@ -253,7 +262,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 0;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid #003805;
 }
 .shopping-item.checked {
   opacity: 0.4;
@@ -267,17 +276,17 @@ body {
 }
 .shopping-item .item-name {
   font-weight: bold;
-  color: #22c55e;
+  color: #006b27;
   font-size: 1.1rem;
 }
 .shopping-item .item-meta {
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: #5c6572;
 }
 .shopping-item input[type=checkbox] {
   width: 1.5rem;
   height: 1.5rem;
-  accent-color: #22c55e;
+  accent-color: #006b27;
 }
 
 /*# sourceMappingURL=styles.css.map */

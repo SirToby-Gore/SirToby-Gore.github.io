@@ -661,7 +661,7 @@ class App {
 			return (amount / 1000).toFixed(1) + ' kg';
 		if (unit === 'ml' && amount >= 1000)
 			return (amount / 1000).toFixed(1) + ' l';
-		return `${amount} ${unit}`;
+		return unit == 'each' ? amount.toString() : `${amount} ${unit}`;
 	}
 
 	getAggregatedIngredients() {
@@ -772,11 +772,11 @@ class App {
 				);
 				return r
 					? `<div class="basket-recipe-row">
-            <span class="recipe-name">${r.name} x${count}</span>
+            <span class="recipe-name">${r.name} <span class="count">x${count}</span></span>
             <div class="qty-btns">
               <button onclick="app.decrementRecipe(${r.id})">-</button>
               <button onclick="app.incrementRecipe(${r.id})">+</button>
-              <button class="remove-btn" onclick="app.removeRecipe(${r.id})">×</button>
+              <button class="remove-btn" onclick="app.removeRecipe(${r.id})">X</button>
             </div>
           </div>`
 					: '';
