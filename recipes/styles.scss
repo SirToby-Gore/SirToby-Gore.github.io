@@ -187,6 +187,36 @@ body {
 		}
 	}
 
+	.tile-header {
+		.tags {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			
+			span {
+				font-size: small;
+				color: $theme-text-dim;
+				
+				&::before {
+					content: '#';
+				}
+			}
+		}
+	}
+
+	.metadata {
+		display: inline-flex;
+		flex-direction: row;
+		gap: 1rem;
+		align-items: center;
+		justify-content: space-evenly;
+
+		span {
+			color: $theme-text-dim;
+			font-size: small;
+		}
+	}
+
 	&:active {
 		background: color.adjust($tile-bg, $lightness: 5%);
 	}
@@ -205,6 +235,14 @@ body {
 	padding: 1.5rem;
 	max-width: 800px;
 	margin: 0 auto;
+
+	.allergen-warning {
+		background-color: rgba($color-danger, 0.6);
+		border: rgba($color-danger, 0.8) 3px solid;
+		padding: 0.6rem;
+		border-radius: 0.6rem;
+		margin: 0.3rem;
+	}
 
 	h1 {
 		font-size: 2rem;
@@ -321,15 +359,94 @@ body {
 	}
 }
 
+.recipes {
+	background: #f9f9f9;
+	padding: 15px;
+	border-radius: 8px;
+	margin-bottom: 25px;
+
+	.top-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 10px;
+
+		h2 {
+			margin: 0;
+			font-size: 1.2rem;
+		}
+
+		button {
+			padding: 5px 10px;
+			background: #e53e3e;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+	}
+
+	.list {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 8px 0;
+		border-bottom: 1px solid #eee;
+
+		div {
+			display: flex;
+			gap: 5px;
+
+			.inv-dec-button {
+				padding: 4px 10px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				cursor: pointer;
+				background: #fff;
+			}
+
+			.delete-button {
+				padding: 4px 10px;
+				border: 1px solid #e53e3e;
+				color: #e53e3e;
+				border-radius: 4px;
+				cursor: pointer;
+				background: #fff;
+			}
+		}
+	}
+}
+
+.basket-controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+
+	select {
+		padding: 5px;
+		border-radius: 5px;
+	}
+}
+
+.dim-text {
+	color: #666;
+	margin: 0;
+}
+
 .shopping-item {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 1.2rem 0;
 	border-bottom: 1px solid $theme-border;
+	gap: 5px;
+	padding: 12px 0;
+	border-bottom: 1px solid #eee;
 
-	&.checked {
+	&:has(:checked) {
 		opacity: 0.4;
+
 		.item-name {
 			text-decoration: line-through;
 		}
@@ -342,7 +459,7 @@ body {
 
 	.item-name {
 		font-weight: bold;
-		color: $basket-item-accent;
+		color: $theme-text-dark;
 		font-size: 1.1rem;
 	}
 
@@ -355,5 +472,6 @@ body {
 		width: 1.5rem;
 		height: 1.5rem;
 		accent-color: $basket-item-accent;
+		cursor: pointer;
 	}
 }

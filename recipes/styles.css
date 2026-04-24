@@ -134,6 +134,29 @@ body {
 .tile button:active {
   background: rgb(0, 30.5, 11.1168224299);
 }
+.tile .tile-header .tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.tile .tile-header .tags span {
+  font-size: small;
+  color: #5c6572;
+}
+.tile .tile-header .tags span::before {
+  content: "#";
+}
+.tile .metadata {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.tile .metadata span {
+  color: #5c6572;
+  font-size: small;
+}
 .tile:active {
   background: rgb(254.9807692308, 255, 254);
 }
@@ -152,6 +175,13 @@ body {
   padding: 1.5rem;
   max-width: 800px;
   margin: 0 auto;
+}
+.full .allergen-warning {
+  background-color: rgba(248, 113, 113, 0.6);
+  border: rgba(248, 113, 113, 0.8) 3px solid;
+  padding: 0.6rem;
+  border-radius: 0.6rem;
+  margin: 0.3rem;
 }
 .full h1 {
   font-size: 2rem;
@@ -257,17 +287,87 @@ body {
   border-color: rgba(248, 113, 113, 0.3);
 }
 
+.recipes {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+.recipes .top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.recipes .top-row h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.recipes .top-row button {
+  padding: 5px 10px;
+  background: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.recipes .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+.recipes .list div {
+  display: flex;
+  gap: 5px;
+}
+.recipes .list div .inv-dec-button {
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #fff;
+}
+.recipes .list div .delete-button {
+  padding: 4px 10px;
+  border: 1px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.basket-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.basket-controls select {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.dim-text {
+  color: #666;
+  margin: 0;
+}
+
 .shopping-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 0;
   border-bottom: 1px solid #003805;
+  gap: 5px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
 }
-.shopping-item.checked {
+.shopping-item:has(:checked) {
   opacity: 0.4;
 }
-.shopping-item.checked .item-name {
+.shopping-item:has(:checked) .item-name {
   text-decoration: line-through;
 }
 .shopping-item .item-info {
@@ -276,7 +376,7 @@ body {
 }
 .shopping-item .item-name {
   font-weight: bold;
-  color: #006b27;
+  color: #000000;
   font-size: 1.1rem;
 }
 .shopping-item .item-meta {
@@ -287,6 +387,7 @@ body {
   width: 1.5rem;
   height: 1.5rem;
   accent-color: #006b27;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=styles.css.map */
