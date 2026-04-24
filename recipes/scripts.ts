@@ -795,814 +795,847 @@ class App {
 			tags: ['dinner', 'lunch', 'potato'],
 		},
 		{
-            id: IDManger.getNextId(),
-            name: 'Bolognese',
-            description: 'A slow-cooked, rich Italian meat sauce perfect with tagliatelle or spaghetti.',
-            timeMinutes: 120,
-            servings: 4,
-            ingredients: [
-                Ingredient.mincedBeef.getAmount(500, 'g'),
-                Ingredient.whiteOnion.getAmount(1),
-                Ingredient.carrot.getAmount(1),
-                Ingredient.celery.getAmount(1, 'pc'),
-                Ingredient.garlicCloves.getAmount(2),
-                Ingredient.tomatoPuree.getAmount(2, 'tbsp'),
-                Ingredient.choppedTomatoes.getAmount(1),
-                Ingredient.beefStock.getAmount(200, 'ml'),
-                Ingredient.driedOregano.getAmount(1, 'tsp'),
-                Ingredient.oliveOil.getAmount(1, 'tbsp'),
-            ],
-            steps: [
-                'Finely dice the onion, carrot, and celery.',
-                'Sauté the vegetables in olive oil over medium heat until softened.',
-                'Add the minced beef and brown thoroughly, breaking up lumps.',
-                'Stir in the garlic and tomato purée, cooking for 2 minutes.',
-                'Add chopped tomatoes, beef stock, and oregano.',
-                'Simmer on low heat for at least 1.5 hours until thick and rich.',
-            ],
-            tags: ['italian', 'dinner', 'classic'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Lasagne',
-            description: 'Layers of rich bolognese, creamy béchamel sauce, and pasta topped with melted cheese.',
-            timeMinutes: 90,
-            servings: 6,
-            ingredients: [
-                Ingredient.lasagneSheets.getAmount(12),
-                Ingredient.mincedBeef.getAmount(500, 'g'),
-                Ingredient.whiteOnion.getAmount(1),
-                Ingredient.choppedTomatoes.getAmount(1),
-                Ingredient.butter.getAmount(50, 'g'),
-                Ingredient.plainFlour.getAmount(50, 'g'),
-                Ingredient.wholeMilk.getAmount(600, 'ml'),
-                Ingredient.cheddarCheese.getAmount(150, 'g'),
-                Ingredient.parmesanCheese.getAmount(50, 'g'),
-            ],
-            steps: [
-                'Prepare a meat sauce by browning beef with onions and simmering with tomatoes.',
-                'Make a béchamel by melting butter, stirring in flour, and gradually whisking in milk until thick.',
-                'In an ovenproof dish, layer meat sauce, then pasta sheets, then white sauce.',
-                'Repeat layers, finishing with white sauce on top.',
-                'Sprinkle with cheddar and parmesan.',
-                'Bake at 200°C for 35-40 minutes until golden and bubbling.',
-            ],
-            tags: ['italian', 'dinner', 'baked'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Veggie Lasagne',
-            description: 'A Mediterranean vegetable twist on the classic baked pasta.',
-            timeMinutes: 75,
-            servings: 4,
-            ingredients: [
-                Ingredient.aubergine.getAmount(1),
-                Ingredient.courgette.getAmount(2),
-                Ingredient.redBellPepper.getAmount(2),
-                Ingredient.tomatoPassata.getAmount(500, 'ml'),
-                Ingredient.lasagneSheets.getAmount(9),
-                Ingredient.mozzarellaBall.getAmount(1),
-                Ingredient.wholeMilk.getAmount(500, 'ml'),
-                Ingredient.butter.getAmount(40, 'g'),
-                Ingredient.plainFlour.getAmount(40, 'g'),
-            ],
-            steps: [
-                'Slice and roast the aubergine, courgette, and peppers until tender.',
-                'Combine the roasted vegetables with passata and herbs.',
-                'Make a white sauce using the butter, flour, and milk.',
-                'Layer vegetable sauce, pasta, and white sauce in a dish.',
-                'Top with torn mozzarella and bake at 190°C for 30 minutes.',
-            ],
-            tags: ['vegetarian', 'italian', 'dinner'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Gyros',
-            description: 'Greek-style wraps with spiced meat, fresh salad, and creamy yogurt sauce.',
-            timeMinutes: 40,
-            servings: 4,
-            ingredients: [
-                Ingredient.chickenThighs.getAmount(6),
-                Ingredient.pitaBread.getAmount(4),
-                Ingredient.greekYogurt.getAmount(200, 'g'),
-                Ingredient.cucumber.getAmount(0.5),
-                Ingredient.garlicCloves.getAmount(2),
-                Ingredient.driedOregano.getAmount(1, 'tsp'),
-                Ingredient.smokedPaprika.getAmount(1, 'tsp'),
-                Ingredient.tomato.getAmount(2),
-                Ingredient.redOnion.getAmount(1),
-            ],
-            steps: [
-                'Marinate chicken in oil, oregano, paprika, and garlic, then grill until charred.',
-                'Grate cucumber and squeeze out liquid, mix with yogurt and garlic for tzatziki.',
-                'Warm the pita breads.',
-                'Slice the chicken and place in pitas with sliced tomatoes, onion, and tzatziki.',
-                'Wrap tightly and serve immediately.',
-            ],
-            tags: ['greek', 'street-food', 'quick'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Chicken Tikka Masala',
-            description: 'The nation\'s favourite curry: marinated chicken in a creamy, spiced tomato sauce.',
-            timeMinutes: 50,
-            servings: 4,
-            ingredients: [
-                Ingredient.chickenBreast.getAmount(3),
-                Ingredient.greekYogurt.getAmount(150, 'g'),
-                Ingredient.tomatoPassata.getAmount(400, 'ml'),
-                Ingredient.doubleCream.getAmount(100, 'ml'),
-                Ingredient.garamMasala.getAmount(2, 'tsp'),
-                Ingredient.groundCumin.getAmount(1, 'tsp'),
-                Ingredient.turmeric.getAmount(1, 'tsp'),
-                Ingredient.freshGinger.getAmount(20, 'g'),
-                Ingredient.garlicCloves.getAmount(3),
-            ],
-            steps: [
-                'Coat diced chicken in yogurt and half the spices; grill until slightly charred.',
-                'Fry onions, ginger, and garlic in a pan until soft.',
-                'Add remaining spices and passata, simmer for 15 minutes.',
-                'Stir in the grilled chicken and double cream.',
-                'Heat through and serve with basmati rice.',
-            ],
-            tags: ['curry', 'indian', 'dinner'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Meatballs (Pork)',
-            description: 'Juicy pork meatballs seasoned with fennel and herbs in a light tomato sauce.',
-            timeMinutes: 45,
-            servings: 4,
-            ingredients: [
-                Ingredient.porkMince.getAmount(500, 'g'),
-                Ingredient.breadcrumbs.getAmount(50, 'g'),
-                Ingredient.largeEggs.getAmount(1),
-                Ingredient.fennelSeed.getAmount(1, 'tsp'),
-                Ingredient.garlicCloves.getAmount(1),
-                Ingredient.tomatoPassata.getAmount(500, 'ml'),
-                Ingredient.driedOregano.getAmount(1, 'tsp'),
-                Ingredient.parmesanCheese.getAmount(30, 'g'),
-            ],
-            steps: [
-                'Mix pork mince, breadcrumbs, egg, crushed fennel seeds, and garlic.',
-                'Roll into golf-ball sized spheres.',
-                'Brown the meatballs in a pan with a little oil.',
-                'Pour over the passata and oregano, then simmer for 20 minutes.',
-                'Serve over pasta with a grating of parmesan.',
-            ],
-            tags: ['pork', 'dinner', 'family'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Normandy Pork',
-            description: 'A classic French dish of pork cooked with apples, cider, and cream.',
-            timeMinutes: 60,
-            servings: 4,
-            ingredients: [
-                Ingredient.porkLoin.getAmount(600, 'g'),
-                Ingredient.desertApple.getAmount(2),
-                Ingredient.whiteOnion.getAmount(1),
-                Ingredient.cider.getAmount(300, 'ml'),
-                Ingredient.chickenStock.getAmount(150, 'ml'),
-                Ingredient.doubleCream.getAmount(100, 'ml'),
-                Ingredient.butter.getAmount(25, 'g'),
-                Ingredient.driedOregano.getAmount(1, 'tsp'),
-            ],
-            steps: [
-                'Slice pork into medallions and brown in butter; remove from pan.',
-                'Sauté sliced onions and apples until golden.',
-                'Pour in cider and stock, return pork to the pan.',
-                'Simmer for 20 minutes until the pork is tender.',
-                'Stir in the cream and heat gently before serving.',
-            ],
-            tags: ['french', 'pork', 'creamy'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Creamy Chicken Curry',
-            description: 'A mild and silky curry using coconut milk or cream, perfect for the whole family.',
-            timeMinutes: 40,
-            servings: 4,
-            ingredients: [
-                Ingredient.chickenThighs.getAmount(5),
-                Ingredient.whiteOnion.getAmount(1),
-                Ingredient.mildCurryPowder.getAmount(2, 'tbsp'),
-                Ingredient.chickenStock.getAmount(200, 'ml'),
-                Ingredient.doubleCream.getAmount(150, 'ml'),
-                Ingredient.frozenPeas.getAmount(100, 'g'),
-                Ingredient.vegetableOil.getAmount(1, 'tbsp'),
-            ],
-            steps: [
-                'Fry onion and diced chicken until chicken is browned.',
-                'Stir in curry powder and cook for 1 minute.',
-                'Add chicken stock and simmer for 15 minutes.',
-                'Add peas and double cream, simmering for another 5 minutes until thickened.',
-                'Serve with naan bread or rice.',
-            ],
-            tags: ['curry', 'chicken', 'mild'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Eggs Benedict',
-            description: 'The ultimate brunch: poached eggs and ham on muffins with buttery hollandaise.',
-            timeMinutes: 20,
-            servings: 2,
-            ingredients: [
-                Ingredient.largeEggs.getAmount(4),
-                Ingredient.whiteBread.getAmount(2),
-                Ingredient.baconRashers.getAmount(4),
-                Ingredient.butter.getAmount(100, 'g'),
-                Ingredient.lemonJuice.getAmount(10, 'ml'),
-            ],
-            steps: [
-                'Make hollandaise by whisking 2 egg yolks and lemon juice over a bain-marie, slowly adding melted butter.',
-                'Toast the bread (or muffins) and fry the bacon until crispy.',
-                'Poach the remaining eggs in simmering water for 3 minutes.',
-                'Place bacon on toast, top with poached eggs, and smother in hollandaise.',
-            ],
-            tags: ['brunch', 'breakfast', 'eggs'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Salad Niçoise',
-            description: 'A fresh French salad with tuna, green beans, and hard-boiled eggs.',
-            timeMinutes: 30,
-            servings: 2,
-            ingredients: [
-                Ingredient.tunaSteak.getAmount(200, 'g'),
-                Ingredient.largePotatoes.getAmount(2),
-                Ingredient.greenBeans.getAmount(100, 'g'),
-                Ingredient.largeEggs.getAmount(2),
-                Ingredient.blackOlives.getAmount(50, 'g'),
-                Ingredient.tomato.getAmount(2),
-                Ingredient.oliveOil.getAmount(3, 'tbsp'),
-            ],
-            steps: [
-                'Boil potatoes until tender; blanch green beans in the same water.',
-                'Hard-boil the eggs, then peel and quarter.',
-                'Sear tuna steaks in a hot pan for 2 minutes each side.',
-                'Arrange lettuce, potatoes, beans, tomatoes, olives, and eggs on a plate.',
-                'Top with sliced tuna and a dressing of olive oil and lemon.',
-            ],
-            tags: ['salad', 'french', 'healthy'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Carrot and Coriander Soup',
-            description: 'A vibrant and healthy soup with earthy spices and fresh herbs.',
-            timeMinutes: 35,
-            servings: 4,
-            ingredients: [
-                Ingredient.carrot.getAmount(6),
-                Ingredient.whiteOnion.getAmount(1),
-                Ingredient.groundCoriander.getAmount(1, 'tsp'),
-                Ingredient.vegetableStock.getAmount(1000, 'ml'),
-                Ingredient.vegetableOil.getAmount(1, 'tbsp'),
-            ],
-            steps: [
-                'Sauté diced onion and carrots in a large pot.',
-                'Add ground coriander and cook for 1 minute.',
-                'Pour in the stock and simmer for 20 minutes until carrots are soft.',
-                'Blend until smooth using a stick blender.',
-                'Season well and serve with crusty bread.',
-            ],
-            tags: ['soup', 'vegetarian', 'lunch'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Leek and Potato Soup',
-            description: 'A thick, comforting British classic.',
-            timeMinutes: 40,
-            servings: 4,
-            ingredients: [
-                Ingredient.leeks.getAmount(3),
-                Ingredient.largePotatoes.getAmount(3),
-                Ingredient.whiteOnion.getAmount(1),
-                Ingredient.vegetableStock.getAmount(800, 'ml'),
-                Ingredient.doubleCream.getAmount(50, 'ml'),
-                Ingredient.butter.getAmount(30, 'g'),
-            ],
-            steps: [
-                'Clean and slice the leeks; peel and dice the potatoes.',
-                'Melt butter and sweat the leeks and onions until soft but not brown.',
-                'Add potatoes and stock; simmer for 20 minutes.',
-                'Blend half the soup for a chunky-creamy texture.',
-                'Stir in the cream and season.',
-            ],
-            tags: ['soup', 'classic', 'british'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Cabbage and Bacon Soup',
-            description: 'A rustic, hearty soup that makes the most of simple ingredients.',
-            timeMinutes: 40,
-            servings: 4,
-            ingredients: [
-                Ingredient.baconRashers.getAmount(6),
-                Ingredient.whiteOnion.getAmount(1),
-                Ingredient.largePotatoes.getAmount(2),
-                Ingredient.chickenStock.getAmount(1000, 'ml'),
-            ],
-            steps: [
-                'Fry chopped bacon until crisp; remove half for garnish.',
-                'Add onion and diced potato to the pan, cooking for 5 minutes.',
-                'Add shredded cabbage and stock.',
-                'Simmer for 15 minutes until vegetables are tender.',
-                'Serve topped with the reserved crispy bacon.',
-            ],
-            tags: ['soup', 'rustic', 'bacon'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Broccoli and Stilton Soup',
-            description: 'Indulgently creamy with a punchy hit of blue cheese.',
-            timeMinutes: 30,
-            servings: 4,
-            ingredients: [
-                Ingredient.floretBroccoli.getAmount(2),
-                Ingredient.whiteOnion.getAmount(1),
-                Ingredient.vegetableStock.getAmount(800, 'ml'),
-                Ingredient.stiltonCheese.getAmount(100, 'g'),
-                Ingredient.doubleCream.getAmount(50, 'ml'),
-            ],
-            steps: [
-                'Sauté onion until soft.',
-                'Add chopped broccoli and stock; simmer for 10-12 minutes.',
-                'Blend until smooth.',
-                'Stir in the crumbled Stilton and cream until melted.',
-                'Season with plenty of black pepper.',
-            ],
-            tags: ['soup', 'cheese', 'vegetarian'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Hunters Chicken',
-            description: 'Chicken breast wrapped in bacon, smothered in BBQ sauce and melted cheese.',
-            timeMinutes: 35,
-            servings: 2,
-            ingredients: [
-                Ingredient.chickenBreast.getAmount(2),
-                Ingredient.baconRashers.getAmount(4),
-                Ingredient.bbqSauce.getAmount(100, 'ml'),
-                Ingredient.cheddarCheese.getAmount(50, 'g'),
-            ],
-            steps: [
-                'Wrap each chicken breast in two rashers of bacon.',
-                'Bake in the oven at 200°C for 20 minutes.',
-                'Pour BBQ sauce over the chicken and top with cheese.',
-                'Bake for another 5-10 minutes until cheese is golden and bubbling.',
-            ],
-            tags: ['chicken', 'pub-classic', 'dinner'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Country Chicken Pie',
-            description: 'Tender chicken and veg in a creamy sauce under a flaky puff pastry lid.',
-            timeMinutes: 60,
-            servings: 4,
-            ingredients: [
-                Ingredient.chickenThighs.getAmount(4),
-                Ingredient.leeks.getAmount(2),
-                Ingredient.carrot.getAmount(1),
-                Ingredient.chickenStock.getAmount(300, 'ml'),
-                Ingredient.doubleCream.getAmount(100, 'ml'),
-                Ingredient.puffPastry.getAmount(320, 'g'),
-                Ingredient.largeEggs.getAmount(1),
-            ],
-            steps: [
-                'Fry chicken, leeks, and carrots until softened.',
-                'Add stock and cream; simmer until the sauce thickens slightly.',
-                'Pour into a pie dish.',
-                'Top with puff pastry, brush with beaten egg, and cut a steam vent.',
-                'Bake at 200°C for 25 minutes until puffed and golden.',
-            ],
-            tags: ['pie', 'comforting', 'british'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Mac & Cheese',
-            description: 'The ultimate cheesy pasta bake with a crispy topping.',
-            timeMinutes: 40,
-            servings: 4,
-            ingredients: [
-                Ingredient.penne.getAmount(400, 'g'),
-                Ingredient.butter.getAmount(50, 'g'),
-                Ingredient.plainFlour.getAmount(50, 'g'),
-                Ingredient.wholeMilk.getAmount(600, 'ml'),
-                Ingredient.cheddarCheese.getAmount(200, 'g'),
-                Ingredient.breadcrumbs.getAmount(50, 'g'),
-            ],
-            steps: [
-                'Boil pasta for 2 minutes less than the pack instructions.',
-                'Make a cheese sauce by making a roux with butter/flour, adding milk, then cheese.',
-                'Mix the pasta into the cheese sauce.',
-                'Transfer to a dish, top with breadcrumbs and extra cheese.',
-                'Bake at 200°C for 20 minutes.',
-            ],
-            tags: ['pasta', 'cheese', 'kids'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Potato Salad',
-            description: 'Creamy new potatoes with spring onions and a tangy mayo dressing.',
-            timeMinutes: 25,
-            servings: 6,
-            ingredients: [
-                Ingredient.largePotatoes.getAmount(7),
-                Ingredient.mayonaisse.getAmount(150, 'g'),
-                Ingredient.springOnion.getAmount(4),
-                Ingredient.dijonMustard.getAmount(1, 'tsp'),
-                Ingredient.lemonJuice.getAmount(1, 'tsp'),
-            ],
-            steps: [
-                'Boil cubed potatoes in salted water until tender.',
-                'Drain and let cool completely.',
-                'Mix mayonnaise, mustard, and lemon juice.',
-                'Toss potatoes with the dressing and sliced spring onions.',
-            ],
-            tags: ['side', 'salad', 'bbq'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Creamy Cheesy Dauphinoise Potatoes',
-            description: 'Thinly sliced potatoes baked in a garlic-infused cream sauce.',
-            timeMinutes: 75,
-            servings: 6,
-            ingredients: [
-                Ingredient.largePotatoes.getAmount(7),
-                Ingredient.doubleCream.getAmount(400, 'ml'),
-                Ingredient.wholeMilk.getAmount(100, 'ml'),
-                Ingredient.garlicCloves.getAmount(2),
-                Ingredient.cheddarCheese.getAmount(100, 'g'),
-            ],
-            steps: [
-                'Thinly slice potatoes (approx 2mm thick).',
-                'Heat cream, milk, and crushed garlic in a pan until just simmering.',
-                'Layer potatoes in a buttered dish, seasoning each layer.',
-                'Pour over the cream mixture.',
-                'Top with cheese and bake at 160°C for 1 hour.',
-            ],
-            tags: ['side', 'french', 'indulgent'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Coleslaw',
-            description: 'Crunchy, fresh, and much better than shop-bought.',
-            timeMinutes: 15,
-            servings: 6,
-            ingredients: [
-                Ingredient.carrot.getAmount(2),
-                Ingredient.whiteOnion.getAmount(0.5),
-                Ingredient.mayonaisse.getAmount(100, 'g'),
-                Ingredient.lemonJuice.getAmount(1, 'tsp'),
-            ],
-            steps: [
-                'Finely shred the cabbage and onion.',
-                'Grate the carrots.',
-                'Whisk mayonnaise and lemon juice together.',
-                'Toss everything together until well coated.',
-            ],
-            tags: ['side', 'salad', 'fresh'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'French Onion Soup',
-            description: 'Deeply caramelised onions in a rich beef broth, topped with cheesy bread.',
-            timeMinutes: 60,
-            servings: 4,
-            ingredients: [
-                Ingredient.whiteOnion.getAmount(6),
-                Ingredient.beefStock.getAmount(1200, 'ml'),
-                Ingredient.butter.getAmount(50, 'g'),
-                Ingredient.whiteBread.getAmount(4),
-                Ingredient.gruyereCheese.getAmount(100, 'g'),
-                Ingredient.brandy.getAmount(1, 'tbsp'),
-            ],
-            steps: [
-                'Slowly cook sliced onions in butter for 40 minutes until dark brown.',
-                'Add brandy and deglaze the pan.',
-                'Add stock and simmer for 15 minutes.',
-                'Toast bread, top with cheese, and grill until melted.',
-                'Serve soup in bowls with the cheesy toast floating on top.',
-            ],
-            tags: ['french', 'soup', 'classic'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Creamy Tomato Sauce Pasta',
-            description: 'A smooth, comforting pasta dish that is ready in minutes.',
-            timeMinutes: 20,
-            servings: 2,
-            ingredients: [
-                Ingredient.penne.getAmount(200, 'g'),
-                Ingredient.tomatoPassata.getAmount(300, 'ml'),
-                Ingredient.doubleCream.getAmount(50, 'ml'),
-                Ingredient.garlicCloves.getAmount(1),
-                Ingredient.freshBasil.getAmount(10, 'g'),
-            ],
-            steps: [
-                'Boil pasta in salted water.',
-                'Gently heat passata with crushed garlic for 10 minutes.',
-                'Stir in the cream and fresh basil.',
-                'Toss the cooked pasta in the sauce and serve.',
-            ],
-            tags: ['pasta', 'quick', 'vegetarian'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Mango Chutney Creamy Pasta',
-            description: 'A quirky, fusion-style sweet and savoury pasta sauce.',
-            timeMinutes: 20,
-            servings: 2,
-            ingredients: [
-                Ingredient.penne.getAmount(200, 'g'),
-                Ingredient.mangoChutney.getAmount(20, 'g'),
-                Ingredient.cremeFraiche.getAmount(150, 'g'),
-                Ingredient.mildCurryPowder.getAmount(1, 'tsp'),
-            ],
-            steps: [
-                'Cook the pasta according to instructions.',
-                'In a pan, mix crème fraîche, mango chutney, and curry powder.',
-                'Warm gently—do not boil.',
-                'Mix with the pasta and serve, optionally with coriander.',
-            ],
-            tags: ['fusion', 'pasta', 'unique'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Cottage and Shepherd Pie',
-            description: 'A British staple. Use minced beef for Cottage or lamb for Shepherd.',
-            timeMinutes: 60,
-            servings: 4,
-            ingredients: [
-                Ingredient.mincedBeef.getAmount(500, 'g'),
-                Ingredient.largePotatoes.getAmount(4),
-                Ingredient.whiteOnion.getAmount(1),
-                Ingredient.carrot.getAmount(1),
-                Ingredient.beefStock.getAmount(300, 'ml'),
-                Ingredient.butter.getAmount(50, 'g'),
-            ],
-            steps: [
-                'Fry meat, onion, and carrots until browned.',
-                'Add stock and simmer for 20 minutes.',
-                'Boil and mash potatoes with butter and milk.',
-                'Place meat in a dish, top with mash, and fork the surface.',
-                'Bake at 200°C for 25 minutes until the peaks are crispy.',
-            ],
-            tags: ['british', 'meat', 'pie'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Classic Creamy Fish Pie',
-            description: 'Mixed fish and prawns in a silky white sauce topped with buttery mash.',
-            timeMinutes: 50,
-            servings: 4,
-            ingredients: [
-                Ingredient.whiteFishFillet.getAmount(300, 'g'),
-                Ingredient.salmonFillet.getAmount(200, 'g'),
-                Ingredient.cookedPrawns.getAmount(100, 'g'),
-                Ingredient.largePotatoes.getAmount(4),
-                Ingredient.wholeMilk.getAmount(500, 'ml'),
-                Ingredient.butter.getAmount(50, 'g'),
-                Ingredient.plainFlour.getAmount(50, 'g'),
-            ],
-            steps: [
-                'Poach fish in milk, then remove and flake. Reserve the milk.',
-                'Make a white sauce using butter, flour, and the reserved milk.',
-                'Stir fish and prawns into the sauce.',
-                'Top with mashed potatoes and bake at 200°C for 25 minutes.',
-            ],
-            tags: ['fish', 'british', 'comforting'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Bubble and Squeak',
-            description: 'The traditional way to use up Sunday roast leftovers.',
-            timeMinutes: 20,
-            servings: 2,
-            ingredients: [
-                Ingredient.largePotatoes.getAmount(4),
-                Ingredient.butter.getAmount(20, 'g'),
-                Ingredient.baconRashers.getAmount(2),
-            ],
-            steps: [
-                'Mash leftover potatoes and mix with finely chopped cooked cabbage.',
-                'Fry bacon in a pan until fat renders.',
-                'Add the veg mix to the pan and press down into a cake.',
-                'Fry until a dark brown crust forms, then flip and repeat.',
-            ],
-            tags: ['british', 'leftovers', 'breakfast'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Vegetable Samosas',
-            description: 'Crispy pastry triangles filled with spiced potatoes and peas.',
-            timeMinutes: 45,
-            servings: 4,
-            ingredients: [
-                Ingredient.phylloPastry.getAmount(270, 'g'),
-                Ingredient.largePotatoes.getAmount(2),
-                Ingredient.frozenPeas.getAmount(100, 'g'),
-                Ingredient.garamMasala.getAmount(1, 'tsp'),
-                Ingredient.turmeric.getAmount(0.5, 'tsp'),
-            ],
-            steps: [
-                'Boil and cube potatoes; mix with peas and spices.',
-                'Cut pastry into strips, place filling at the end, and fold into triangles.',
-                'Brush with oil and bake at 200°C for 15-20 minutes until golden.',
-            ],
-            tags: ['indian', 'snack', 'vegetarian'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Crispy Vegetable Spring Rolls',
-            description: 'Light and crunchy appetizers filled with stir-fried vegetables.',
-            timeMinutes: 40,
-            servings: 4,
-            ingredients: [
-                Ingredient.springRollWrappers.getAmount(8),
-                Ingredient.carrot.getAmount(1),
-                Ingredient.beansprouts.getAmount(100, 'g'),
-                Ingredient.soySauce.getAmount(1, 'tbsp'),
-                Ingredient.freshGinger.getAmount(10, 'g'),
-            ],
-            steps: [
-                'Stir fry shredded carrots, ginger, and sprouts with soy sauce.',
-                'Place filling on wrappers, roll tightly, and seal with a little water.',
-                'Deep fry or brush with oil and bake until crispy.',
-            ],
-            tags: ['chinese', 'appetizer', 'vegetarian'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Millionaire\'s Shortbread',
-            description: 'Three layers of heaven: shortbread, gooey caramel, and thick chocolate.',
-            timeMinutes: 90,
-            servings: 12,
-            ingredients: [
-                Ingredient.plainFlour.getAmount(250, 'g'),
-                Ingredient.butter.getAmount(225, 'g'),
-                Ingredient.casterSugar.getAmount(75, 'g'),
-                Ingredient.goldenSyrup.getAmount(30, 'g'),
-                Ingredient.darkChocolate.getAmount(200, 'g'),
-            ],
-            steps: [
-                'Rub 175g butter into flour and sugar; press into a tin and bake at 180°C for 20 mins.',
-                'Boil remaining butter, syrup, and condensed milk (pantry) until thick and golden.',
-                'Pour caramel over shortbread and let set.',
-                'Melt chocolate and pour over the caramel. Chill until firm.',
-            ],
-            tags: ['sweet', 'baking', 'classic'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Classic Italian Tiramisu',
-            description: 'A coffee-flavoured dessert with layers of sponge and mascarpone cream.',
-            timeMinutes: 30,
-            servings: 6,
-            ingredients: [
-                Ingredient.fingerBiscuits.getAmount(24),
-                Ingredient.mascarpone.getAmount(500, 'g'),
-                Ingredient.espresso.getAmount(300, 'ml'),
-                Ingredient.largeEggs.getAmount(3),
-                Ingredient.casterSugar.getAmount(100, 'g'),
-            ],
-            steps: [
-                'Whisk egg yolks and sugar until pale, then fold into mascarpone.',
-                'Dip biscuits quickly in coffee and layer in a dish.',
-                'Spread half the cream over biscuits; repeat layers.',
-                'Dust with cocoa powder and chill for 4 hours.',
-            ],
-            tags: ['italian', 'dessert', 'no-bake'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Classic Prawn Cocktail',
-            description: 'A retro starter that never goes out of style.',
-            timeMinutes: 15,
-            servings: 4,
-            ingredients: [
-                Ingredient.cookedPrawns.getAmount(400, 'g'),
-                Ingredient.icebergLettuce.getAmount(1),
-                Ingredient.mayonaisse.getAmount(150, 'g'),
-                Ingredient.smokedPaprika.getAmount(0.5, 'tsp'),
-                Ingredient.lemonJuice.getAmount(1, 'tsp'),
-            ],
-            steps: [
-                'Shred the lettuce and place in the bottom of glasses.',
-                'Mix mayo with a splash of ketchup (pantry), lemon juice, and paprika.',
-                'Toss prawns in the sauce and spoon over lettuce.',
-                'Top with a pinch of paprika and a lemon wedge.',
-            ],
-            tags: ['starter', 'seafood', 'classic'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Chicken Paprikash',
-            description: 'A Hungarian classic of tender chicken in a smoky, creamy paprika sauce.',
-            timeMinutes: 50,
-            servings: 4,
-            ingredients: [
-                Ingredient.chickenThighs.getAmount(6),
-                Ingredient.whiteOnion.getAmount(2),
-                Ingredient.smokedPaprika.getAmount(2, 'tbsp'),
-                Ingredient.chickenStock.getAmount(300, 'ml'),
-                Ingredient.cremeFraiche.getAmount(150, 'g'),
-            ],
-            steps: [
-                'Brown chicken thighs and remove from pan.',
-                'Sauté onions, then stir in paprika (don\'t burn it!).',
-                'Add stock and return chicken; simmer for 30 minutes.',
-                'Stir in crème fraîche at the end and serve with noodles or rice.',
-            ],
-            tags: ['hungarian', 'chicken', 'smoky'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Spicy Chicken Jalfrezi',
-            description: 'A vibrant stir-fried curry with peppers, onions, and green chillies.',
-            timeMinutes: 40,
-            servings: 4,
-            ingredients: [
-                Ingredient.chickenBreast.getAmount(3),
-                Ingredient.redBellPepper.getAmount(1),
-                Ingredient.dicedGreenBellPepper.getAmount(1),
-                Ingredient.tomatoPassata.getAmount(200, 'ml'),
-                Ingredient.garamMasala.getAmount(1, 'tsp'),
-                Ingredient.turmeric.getAmount(1, 'tsp'),
-            ],
-            steps: [
-                'Fry chicken until sealed; remove from pan.',
-                'Stir fry peppers and onions until slightly charred.',
-                'Add spices, return chicken, and pour in passata.',
-                'Cook on high heat for 10 minutes until sauce is thick and coating the meat.',
-            ],
-            tags: ['indian', 'spicy', 'curry'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Soft Indian Naan Bread',
-            description: 'Home-made flatbreads, soft and bubbly, perfect for mopping up curry sauce.',
-            timeMinutes: 90,
-            servings: 4,
-            ingredients: [
-                Ingredient.strongBreadFlour.getAmount(250, 'g'),
-                Ingredient.yeast.getAmount(7, 'g'),
-                Ingredient.greekYogurt.getAmount(20, 'g'),
-                Ingredient.butter.getAmount(20, 'g'),
-            ],
-            steps: [
-                'Mix flour, yeast, yogurt, and warm water into a dough; knead for 10 mins.',
-                'Let rise for 1 hour.',
-                'Divide into 4 and roll out thinly.',
-                'Fry in a very hot, dry pan for 1-2 minutes each side until bubbly and charred.',
-            ],
-            tags: ['indian', 'bread', 'side'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Crispy Onion Bhajis',
-            description: 'Spiced onion fritters, deep-fried until golden and crunchy.',
-            timeMinutes: 30,
-            servings: 4,
-            ingredients: [
-                Ingredient.whiteOnion.getAmount(2),
-                Ingredient.plainFlour.getAmount(100, 'g'),
-                Ingredient.turmeric.getAmount(1, 'tsp'),
-                Ingredient.groundCumin.getAmount(1, 'tsp'),
-                Ingredient.sunflowerOil.getAmount(500, 'ml'),
-            ],
-            steps: [
-                'Thinly slice onions and toss with spices and flour.',
-                'Add just enough water to create a thick batter that coats the onions.',
-                'Drop spoonfuls into hot oil and fry for 3-4 minutes until crisp.',
-            ],
-            tags: ['indian', 'snack', 'fried'],
-        },
-        {
-            id: IDManger.getNextId(),
-            name: 'Margherita Pizza',
-            description: 'The simple classic: tomato, mozzarella, and fresh basil.',
-            timeMinutes: 60,
-            servings: 2,
-            ingredients: [
-                Ingredient.strongBreadFlour.getAmount(300, 'g'),
-                Ingredient.yeast.getAmount(7, 'g'),
-                Ingredient.tomatoPassata.getAmount(150, 'ml'),
-                Ingredient.mozzarellaBall.getAmount(1),
-                Ingredient.freshBasil.getAmount(5, 'g'),
-            ],
-            steps: [
-                'Make a dough with flour, yeast, and water; let rise.',
-                'Roll out into two thin circles.',
-                'Spread passata, top with torn mozzarella.',
-                'Bake at the highest possible oven temp for 8-10 minutes.',
-                'Top with fresh basil and a drizzle of olive oil.',
-            ],
-            tags: ['italian', 'pizza', 'vegetarian'],
-        },
+			id: IDManger.getNextId(),
+			name: 'Bolognese',
+			description:
+				'A slow-cooked, rich Italian meat sauce perfect with tagliatelle or spaghetti.',
+			timeMinutes: 120,
+			servings: 4,
+			ingredients: [
+				Ingredient.mincedBeef.getAmount(500, 'g'),
+				Ingredient.whiteOnion.getAmount(1),
+				Ingredient.carrot.getAmount(1),
+				Ingredient.celery.getAmount(1, 'pc'),
+				Ingredient.garlicCloves.getAmount(2),
+				Ingredient.tomatoPuree.getAmount(2, 'tbsp'),
+				Ingredient.choppedTomatoes.getAmount(1),
+				Ingredient.beefStock.getAmount(200, 'ml'),
+				Ingredient.driedOregano.getAmount(1, 'tsp'),
+				Ingredient.oliveOil.getAmount(1, 'tbsp'),
+			],
+			steps: [
+				'Finely dice the onion, carrot, and celery.',
+				'Sauté the vegetables in olive oil over medium heat until softened.',
+				'Add the minced beef and brown thoroughly, breaking up lumps.',
+				'Stir in the garlic and tomato purée, cooking for 2 minutes.',
+				'Add chopped tomatoes, beef stock, and oregano.',
+				'Simmer on low heat for at least 1.5 hours until thick and rich.',
+			],
+			tags: ['italian', 'dinner', 'classic'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Lasagne',
+			description:
+				'Layers of rich bolognese, creamy béchamel sauce, and pasta topped with melted cheese.',
+			timeMinutes: 90,
+			servings: 6,
+			ingredients: [
+				Ingredient.lasagneSheets.getAmount(12),
+				Ingredient.mincedBeef.getAmount(500, 'g'),
+				Ingredient.whiteOnion.getAmount(1),
+				Ingredient.choppedTomatoes.getAmount(1),
+				Ingredient.butter.getAmount(50, 'g'),
+				Ingredient.plainFlour.getAmount(50, 'g'),
+				Ingredient.wholeMilk.getAmount(600, 'ml'),
+				Ingredient.cheddarCheese.getAmount(150, 'g'),
+				Ingredient.parmesanCheese.getAmount(50, 'g'),
+			],
+			steps: [
+				'Prepare a meat sauce by browning beef with onions and simmering with tomatoes.',
+				'Make a béchamel by melting butter, stirring in flour, and gradually whisking in milk until thick.',
+				'In an ovenproof dish, layer meat sauce, then pasta sheets, then white sauce.',
+				'Repeat layers, finishing with white sauce on top.',
+				'Sprinkle with cheddar and parmesan.',
+				'Bake at 200°C for 35-40 minutes until golden and bubbling.',
+			],
+			tags: ['italian', 'dinner', 'baked'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Veggie Lasagne',
+			description:
+				'A Mediterranean vegetable twist on the classic baked pasta.',
+			timeMinutes: 75,
+			servings: 4,
+			ingredients: [
+				Ingredient.aubergine.getAmount(1),
+				Ingredient.courgette.getAmount(2),
+				Ingredient.redBellPepper.getAmount(2),
+				Ingredient.tomatoPassata.getAmount(500, 'ml'),
+				Ingredient.lasagneSheets.getAmount(9),
+				Ingredient.mozzarellaBall.getAmount(1),
+				Ingredient.wholeMilk.getAmount(500, 'ml'),
+				Ingredient.butter.getAmount(40, 'g'),
+				Ingredient.plainFlour.getAmount(40, 'g'),
+			],
+			steps: [
+				'Slice and roast the aubergine, courgette, and peppers until tender.',
+				'Combine the roasted vegetables with passata and herbs.',
+				'Make a white sauce using the butter, flour, and milk.',
+				'Layer vegetable sauce, pasta, and white sauce in a dish.',
+				'Top with torn mozzarella and bake at 190°C for 30 minutes.',
+			],
+			tags: ['vegetarian', 'italian', 'dinner'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Gyros',
+			description:
+				'Greek-style wraps with spiced meat, fresh salad, and creamy yogurt sauce.',
+			timeMinutes: 40,
+			servings: 4,
+			ingredients: [
+				Ingredient.chickenThighs.getAmount(6),
+				Ingredient.pitaBread.getAmount(4),
+				Ingredient.greekYogurt.getAmount(200, 'g'),
+				Ingredient.cucumber.getAmount(0.5),
+				Ingredient.garlicCloves.getAmount(2),
+				Ingredient.driedOregano.getAmount(1, 'tsp'),
+				Ingredient.smokedPaprika.getAmount(1, 'tsp'),
+				Ingredient.tomato.getAmount(2),
+				Ingredient.redOnion.getAmount(1),
+			],
+			steps: [
+				'Marinate chicken in oil, oregano, paprika, and garlic, then grill until charred.',
+				'Grate cucumber and squeeze out liquid, mix with yogurt and garlic for tzatziki.',
+				'Warm the pita breads.',
+				'Slice the chicken and place in pitas with sliced tomatoes, onion, and tzatziki.',
+				'Wrap tightly and serve immediately.',
+			],
+			tags: ['greek', 'street-food', 'quick'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Chicken Tikka Masala',
+			description:
+				"The nation's favourite curry: marinated chicken in a creamy, spiced tomato sauce.",
+			timeMinutes: 50,
+			servings: 4,
+			ingredients: [
+				Ingredient.chickenBreast.getAmount(3),
+				Ingredient.greekYogurt.getAmount(150, 'g'),
+				Ingredient.tomatoPassata.getAmount(400, 'ml'),
+				Ingredient.doubleCream.getAmount(100, 'ml'),
+				Ingredient.garamMasala.getAmount(2, 'tsp'),
+				Ingredient.groundCumin.getAmount(1, 'tsp'),
+				Ingredient.turmeric.getAmount(1, 'tsp'),
+				Ingredient.freshGinger.getAmount(20, 'g'),
+				Ingredient.garlicCloves.getAmount(3),
+			],
+			steps: [
+				'Coat diced chicken in yogurt and half the spices; grill until slightly charred.',
+				'Fry onions, ginger, and garlic in a pan until soft.',
+				'Add remaining spices and passata, simmer for 15 minutes.',
+				'Stir in the grilled chicken and double cream.',
+				'Heat through and serve with basmati rice.',
+			],
+			tags: ['curry', 'indian', 'dinner'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Meatballs (Pork)',
+			description:
+				'Juicy pork meatballs seasoned with fennel and herbs in a light tomato sauce.',
+			timeMinutes: 45,
+			servings: 4,
+			ingredients: [
+				Ingredient.porkMince.getAmount(500, 'g'),
+				Ingredient.breadcrumbs.getAmount(50, 'g'),
+				Ingredient.largeEggs.getAmount(1),
+				Ingredient.fennelSeed.getAmount(1, 'tsp'),
+				Ingredient.garlicCloves.getAmount(1),
+				Ingredient.tomatoPassata.getAmount(500, 'ml'),
+				Ingredient.driedOregano.getAmount(1, 'tsp'),
+				Ingredient.parmesanCheese.getAmount(30, 'g'),
+			],
+			steps: [
+				'Mix pork mince, breadcrumbs, egg, crushed fennel seeds, and garlic.',
+				'Roll into golf-ball sized spheres.',
+				'Brown the meatballs in a pan with a little oil.',
+				'Pour over the passata and oregano, then simmer for 20 minutes.',
+				'Serve over pasta with a grating of parmesan.',
+			],
+			tags: ['pork', 'dinner', 'family'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Normandy Pork',
+			description:
+				'A classic French dish of pork cooked with apples, cider, and cream.',
+			timeMinutes: 60,
+			servings: 4,
+			ingredients: [
+				Ingredient.porkLoin.getAmount(600, 'g'),
+				Ingredient.desertApple.getAmount(2),
+				Ingredient.whiteOnion.getAmount(1),
+				Ingredient.cider.getAmount(300, 'ml'),
+				Ingredient.chickenStock.getAmount(150, 'ml'),
+				Ingredient.doubleCream.getAmount(100, 'ml'),
+				Ingredient.butter.getAmount(25, 'g'),
+				Ingredient.driedOregano.getAmount(1, 'tsp'),
+			],
+			steps: [
+				'Slice pork into medallions and brown in butter; remove from pan.',
+				'Sauté sliced onions and apples until golden.',
+				'Pour in cider and stock, return pork to the pan.',
+				'Simmer for 20 minutes until the pork is tender.',
+				'Stir in the cream and heat gently before serving.',
+			],
+			tags: ['french', 'pork', 'creamy'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Creamy Chicken Curry',
+			description:
+				'A mild and silky curry using coconut milk or cream, perfect for the whole family.',
+			timeMinutes: 40,
+			servings: 4,
+			ingredients: [
+				Ingredient.chickenThighs.getAmount(5),
+				Ingredient.whiteOnion.getAmount(1),
+				Ingredient.mildCurryPowder.getAmount(2, 'tbsp'),
+				Ingredient.chickenStock.getAmount(200, 'ml'),
+				Ingredient.doubleCream.getAmount(150, 'ml'),
+				Ingredient.frozenPeas.getAmount(100, 'g'),
+				Ingredient.vegetableOil.getAmount(1, 'tbsp'),
+			],
+			steps: [
+				'Fry onion and diced chicken until chicken is browned.',
+				'Stir in curry powder and cook for 1 minute.',
+				'Add chicken stock and simmer for 15 minutes.',
+				'Add peas and double cream, simmering for another 5 minutes until thickened.',
+				'Serve with naan bread or rice.',
+			],
+			tags: ['curry', 'chicken', 'mild'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Eggs Benedict',
+			description:
+				'The ultimate brunch: poached eggs and ham on muffins with buttery hollandaise.',
+			timeMinutes: 20,
+			servings: 2,
+			ingredients: [
+				Ingredient.largeEggs.getAmount(4),
+				Ingredient.whiteBread.getAmount(2),
+				Ingredient.baconRashers.getAmount(4),
+				Ingredient.butter.getAmount(100, 'g'),
+				Ingredient.lemonJuice.getAmount(10, 'ml'),
+			],
+			steps: [
+				'Make hollandaise by whisking 2 egg yolks and lemon juice over a bain-marie, slowly adding melted butter.',
+				'Toast the bread (or muffins) and fry the bacon until crispy.',
+				'Poach the remaining eggs in simmering water for 3 minutes.',
+				'Place bacon on toast, top with poached eggs, and smother in hollandaise.',
+			],
+			tags: ['brunch', 'breakfast', 'eggs'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Salad Niçoise',
+			description:
+				'A fresh French salad with tuna, green beans, and hard-boiled eggs.',
+			timeMinutes: 30,
+			servings: 2,
+			ingredients: [
+				Ingredient.tunaSteak.getAmount(200, 'g'),
+				Ingredient.largePotatoes.getAmount(2),
+				Ingredient.greenBeans.getAmount(100, 'g'),
+				Ingredient.largeEggs.getAmount(2),
+				Ingredient.blackOlives.getAmount(50, 'g'),
+				Ingredient.tomato.getAmount(2),
+				Ingredient.oliveOil.getAmount(3, 'tbsp'),
+			],
+			steps: [
+				'Boil potatoes until tender; blanch green beans in the same water.',
+				'Hard-boil the eggs, then peel and quarter.',
+				'Sear tuna steaks in a hot pan for 2 minutes each side.',
+				'Arrange lettuce, potatoes, beans, tomatoes, olives, and eggs on a plate.',
+				'Top with sliced tuna and a dressing of olive oil and lemon.',
+			],
+			tags: ['salad', 'french', 'healthy'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Carrot and Coriander Soup',
+			description:
+				'A vibrant and healthy soup with earthy spices and fresh herbs.',
+			timeMinutes: 35,
+			servings: 4,
+			ingredients: [
+				Ingredient.carrot.getAmount(6),
+				Ingredient.whiteOnion.getAmount(1),
+				Ingredient.groundCoriander.getAmount(1, 'tsp'),
+				Ingredient.vegetableStock.getAmount(1000, 'ml'),
+				Ingredient.vegetableOil.getAmount(1, 'tbsp'),
+			],
+			steps: [
+				'Sauté diced onion and carrots in a large pot.',
+				'Add ground coriander and cook for 1 minute.',
+				'Pour in the stock and simmer for 20 minutes until carrots are soft.',
+				'Blend until smooth using a stick blender.',
+				'Season well and serve with crusty bread.',
+			],
+			tags: ['soup', 'vegetarian', 'lunch'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Leek and Potato Soup',
+			description: 'A thick, comforting British classic.',
+			timeMinutes: 40,
+			servings: 4,
+			ingredients: [
+				Ingredient.leeks.getAmount(3),
+				Ingredient.largePotatoes.getAmount(3),
+				Ingredient.whiteOnion.getAmount(1),
+				Ingredient.vegetableStock.getAmount(800, 'ml'),
+				Ingredient.doubleCream.getAmount(50, 'ml'),
+				Ingredient.butter.getAmount(30, 'g'),
+			],
+			steps: [
+				'Clean and slice the leeks; peel and dice the potatoes.',
+				'Melt butter and sweat the leeks and onions until soft but not brown.',
+				'Add potatoes and stock; simmer for 20 minutes.',
+				'Blend half the soup for a chunky-creamy texture.',
+				'Stir in the cream and season.',
+			],
+			tags: ['soup', 'classic', 'british'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Cabbage and Bacon Soup',
+			description:
+				'A rustic, hearty soup that makes the most of simple ingredients.',
+			timeMinutes: 40,
+			servings: 4,
+			ingredients: [
+				Ingredient.baconRashers.getAmount(6),
+				Ingredient.whiteOnion.getAmount(1),
+				Ingredient.largePotatoes.getAmount(2),
+				Ingredient.chickenStock.getAmount(1000, 'ml'),
+			],
+			steps: [
+				'Fry chopped bacon until crisp; remove half for garnish.',
+				'Add onion and diced potato to the pan, cooking for 5 minutes.',
+				'Add shredded cabbage and stock.',
+				'Simmer for 15 minutes until vegetables are tender.',
+				'Serve topped with the reserved crispy bacon.',
+			],
+			tags: ['soup', 'rustic', 'bacon'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Broccoli and Stilton Soup',
+			description: 'Indulgently creamy with a punchy hit of blue cheese.',
+			timeMinutes: 30,
+			servings: 4,
+			ingredients: [
+				Ingredient.floretBroccoli.getAmount(2),
+				Ingredient.whiteOnion.getAmount(1),
+				Ingredient.vegetableStock.getAmount(800, 'ml'),
+				Ingredient.stiltonCheese.getAmount(100, 'g'),
+				Ingredient.doubleCream.getAmount(50, 'ml'),
+			],
+			steps: [
+				'Sauté onion until soft.',
+				'Add chopped broccoli and stock; simmer for 10-12 minutes.',
+				'Blend until smooth.',
+				'Stir in the crumbled Stilton and cream until melted.',
+				'Season with plenty of black pepper.',
+			],
+			tags: ['soup', 'cheese', 'vegetarian'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Hunters Chicken',
+			description:
+				'Chicken breast wrapped in bacon, smothered in BBQ sauce and melted cheese.',
+			timeMinutes: 35,
+			servings: 2,
+			ingredients: [
+				Ingredient.chickenBreast.getAmount(2),
+				Ingredient.baconRashers.getAmount(4),
+				Ingredient.bbqSauce.getAmount(100, 'ml'),
+				Ingredient.cheddarCheese.getAmount(50, 'g'),
+			],
+			steps: [
+				'Wrap each chicken breast in two rashers of bacon.',
+				'Bake in the oven at 200°C for 20 minutes.',
+				'Pour BBQ sauce over the chicken and top with cheese.',
+				'Bake for another 5-10 minutes until cheese is golden and bubbling.',
+			],
+			tags: ['chicken', 'pub-classic', 'dinner'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Country Chicken Pie',
+			description:
+				'Tender chicken and veg in a creamy sauce under a flaky puff pastry lid.',
+			timeMinutes: 60,
+			servings: 4,
+			ingredients: [
+				Ingredient.chickenThighs.getAmount(4),
+				Ingredient.leeks.getAmount(2),
+				Ingredient.carrot.getAmount(1),
+				Ingredient.chickenStock.getAmount(300, 'ml'),
+				Ingredient.doubleCream.getAmount(100, 'ml'),
+				Ingredient.puffPastry.getAmount(320, 'g'),
+				Ingredient.largeEggs.getAmount(1),
+			],
+			steps: [
+				'Fry chicken, leeks, and carrots until softened.',
+				'Add stock and cream; simmer until the sauce thickens slightly.',
+				'Pour into a pie dish.',
+				'Top with puff pastry, brush with beaten egg, and cut a steam vent.',
+				'Bake at 200°C for 25 minutes until puffed and golden.',
+			],
+			tags: ['pie', 'comforting', 'british'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Mac & Cheese',
+			description:
+				'The ultimate cheesy pasta bake with a crispy topping.',
+			timeMinutes: 40,
+			servings: 4,
+			ingredients: [
+				Ingredient.penne.getAmount(400, 'g'),
+				Ingredient.butter.getAmount(50, 'g'),
+				Ingredient.plainFlour.getAmount(50, 'g'),
+				Ingredient.wholeMilk.getAmount(600, 'ml'),
+				Ingredient.cheddarCheese.getAmount(200, 'g'),
+				Ingredient.breadcrumbs.getAmount(50, 'g'),
+			],
+			steps: [
+				'Boil pasta for 2 minutes less than the pack instructions.',
+				'Make a cheese sauce by making a roux with butter/flour, adding milk, then cheese.',
+				'Mix the pasta into the cheese sauce.',
+				'Transfer to a dish, top with breadcrumbs and extra cheese.',
+				'Bake at 200°C for 20 minutes.',
+			],
+			tags: ['pasta', 'cheese', 'kids'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Potato Salad',
+			description:
+				'Creamy new potatoes with spring onions and a tangy mayo dressing.',
+			timeMinutes: 25,
+			servings: 6,
+			ingredients: [
+				Ingredient.largePotatoes.getAmount(7),
+				Ingredient.mayonaisse.getAmount(150, 'g'),
+				Ingredient.springOnion.getAmount(4),
+				Ingredient.dijonMustard.getAmount(1, 'tsp'),
+				Ingredient.lemonJuice.getAmount(1, 'tsp'),
+			],
+			steps: [
+				'Boil cubed potatoes in salted water until tender.',
+				'Drain and let cool completely.',
+				'Mix mayonnaise, mustard, and lemon juice.',
+				'Toss potatoes with the dressing and sliced spring onions.',
+			],
+			tags: ['side', 'salad', 'bbq'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Creamy Cheesy Dauphinoise Potatoes',
+			description:
+				'Thinly sliced potatoes baked in a garlic-infused cream sauce.',
+			timeMinutes: 75,
+			servings: 6,
+			ingredients: [
+				Ingredient.largePotatoes.getAmount(7),
+				Ingredient.doubleCream.getAmount(400, 'ml'),
+				Ingredient.wholeMilk.getAmount(100, 'ml'),
+				Ingredient.garlicCloves.getAmount(2),
+				Ingredient.cheddarCheese.getAmount(100, 'g'),
+			],
+			steps: [
+				'Thinly slice potatoes (approx 2mm thick).',
+				'Heat cream, milk, and crushed garlic in a pan until just simmering.',
+				'Layer potatoes in a buttered dish, seasoning each layer.',
+				'Pour over the cream mixture.',
+				'Top with cheese and bake at 160°C for 1 hour.',
+			],
+			tags: ['side', 'french', 'indulgent'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Coleslaw',
+			description: 'Crunchy, fresh, and much better than shop-bought.',
+			timeMinutes: 15,
+			servings: 6,
+			ingredients: [
+				Ingredient.carrot.getAmount(2),
+				Ingredient.whiteOnion.getAmount(0.5),
+				Ingredient.mayonaisse.getAmount(100, 'g'),
+				Ingredient.lemonJuice.getAmount(1, 'tsp'),
+			],
+			steps: [
+				'Finely shred the cabbage and onion.',
+				'Grate the carrots.',
+				'Whisk mayonnaise and lemon juice together.',
+				'Toss everything together until well coated.',
+			],
+			tags: ['side', 'salad', 'fresh'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'French Onion Soup',
+			description:
+				'Deeply caramelised onions in a rich beef broth, topped with cheesy bread.',
+			timeMinutes: 60,
+			servings: 4,
+			ingredients: [
+				Ingredient.whiteOnion.getAmount(6),
+				Ingredient.beefStock.getAmount(1200, 'ml'),
+				Ingredient.butter.getAmount(50, 'g'),
+				Ingredient.whiteBread.getAmount(4),
+				Ingredient.gruyereCheese.getAmount(100, 'g'),
+				Ingredient.brandy.getAmount(1, 'tbsp'),
+			],
+			steps: [
+				'Slowly cook sliced onions in butter for 40 minutes until dark brown.',
+				'Add brandy and deglaze the pan.',
+				'Add stock and simmer for 15 minutes.',
+				'Toast bread, top with cheese, and grill until melted.',
+				'Serve soup in bowls with the cheesy toast floating on top.',
+			],
+			tags: ['french', 'soup', 'classic'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Creamy Tomato Sauce Pasta',
+			description:
+				'A smooth, comforting pasta dish that is ready in minutes.',
+			timeMinutes: 20,
+			servings: 2,
+			ingredients: [
+				Ingredient.penne.getAmount(200, 'g'),
+				Ingredient.tomatoPassata.getAmount(300, 'ml'),
+				Ingredient.doubleCream.getAmount(50, 'ml'),
+				Ingredient.garlicCloves.getAmount(1),
+				Ingredient.freshBasil.getAmount(10, 'g'),
+			],
+			steps: [
+				'Boil pasta in salted water.',
+				'Gently heat passata with crushed garlic for 10 minutes.',
+				'Stir in the cream and fresh basil.',
+				'Toss the cooked pasta in the sauce and serve.',
+			],
+			tags: ['pasta', 'quick', 'vegetarian'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Mango Chutney Creamy Pasta',
+			description:
+				'A quirky, fusion-style sweet and savoury pasta sauce.',
+			timeMinutes: 20,
+			servings: 2,
+			ingredients: [
+				Ingredient.penne.getAmount(200, 'g'),
+				Ingredient.mangoChutney.getAmount(20, 'g'),
+				Ingredient.cremeFraiche.getAmount(150, 'g'),
+				Ingredient.mildCurryPowder.getAmount(1, 'tsp'),
+			],
+			steps: [
+				'Cook the pasta according to instructions.',
+				'In a pan, mix crème fraîche, mango chutney, and curry powder.',
+				'Warm gently—do not boil.',
+				'Mix with the pasta and serve, optionally with coriander.',
+			],
+			tags: ['fusion', 'pasta', 'unique'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Cottage and Shepherd Pie',
+			description:
+				'A British staple. Use minced beef for Cottage or lamb for Shepherd.',
+			timeMinutes: 60,
+			servings: 4,
+			ingredients: [
+				Ingredient.mincedBeef.getAmount(500, 'g'),
+				Ingredient.largePotatoes.getAmount(4),
+				Ingredient.whiteOnion.getAmount(1),
+				Ingredient.carrot.getAmount(1),
+				Ingredient.beefStock.getAmount(300, 'ml'),
+				Ingredient.butter.getAmount(50, 'g'),
+			],
+			steps: [
+				'Fry meat, onion, and carrots until browned.',
+				'Add stock and simmer for 20 minutes.',
+				'Boil and mash potatoes with butter and milk.',
+				'Place meat in a dish, top with mash, and fork the surface.',
+				'Bake at 200°C for 25 minutes until the peaks are crispy.',
+			],
+			tags: ['british', 'meat', 'pie'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Classic Creamy Fish Pie',
+			description:
+				'Mixed fish and prawns in a silky white sauce topped with buttery mash.',
+			timeMinutes: 50,
+			servings: 4,
+			ingredients: [
+				Ingredient.whiteFishFillet.getAmount(300, 'g'),
+				Ingredient.salmonFillet.getAmount(200, 'g'),
+				Ingredient.cookedPrawns.getAmount(100, 'g'),
+				Ingredient.largePotatoes.getAmount(4),
+				Ingredient.wholeMilk.getAmount(500, 'ml'),
+				Ingredient.butter.getAmount(50, 'g'),
+				Ingredient.plainFlour.getAmount(50, 'g'),
+			],
+			steps: [
+				'Poach fish in milk, then remove and flake. Reserve the milk.',
+				'Make a white sauce using butter, flour, and the reserved milk.',
+				'Stir fish and prawns into the sauce.',
+				'Top with mashed potatoes and bake at 200°C for 25 minutes.',
+			],
+			tags: ['fish', 'british', 'comforting'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Bubble and Squeak',
+			description:
+				'The traditional way to use up Sunday roast leftovers.',
+			timeMinutes: 20,
+			servings: 2,
+			ingredients: [
+				Ingredient.largePotatoes.getAmount(4),
+				Ingredient.butter.getAmount(20, 'g'),
+				Ingredient.baconRashers.getAmount(2),
+			],
+			steps: [
+				'Mash leftover potatoes and mix with finely chopped cooked cabbage.',
+				'Fry bacon in a pan until fat renders.',
+				'Add the veg mix to the pan and press down into a cake.',
+				'Fry until a dark brown crust forms, then flip and repeat.',
+			],
+			tags: ['british', 'leftovers', 'breakfast'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Vegetable Samosas',
+			description:
+				'Crispy pastry triangles filled with spiced potatoes and peas.',
+			timeMinutes: 45,
+			servings: 4,
+			ingredients: [
+				Ingredient.phylloPastry.getAmount(270, 'g'),
+				Ingredient.largePotatoes.getAmount(2),
+				Ingredient.frozenPeas.getAmount(100, 'g'),
+				Ingredient.garamMasala.getAmount(1, 'tsp'),
+				Ingredient.turmeric.getAmount(0.5, 'tsp'),
+			],
+			steps: [
+				'Boil and cube potatoes; mix with peas and spices.',
+				'Cut pastry into strips, place filling at the end, and fold into triangles.',
+				'Brush with oil and bake at 200°C for 15-20 minutes until golden.',
+			],
+			tags: ['indian', 'snack', 'vegetarian'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Crispy Vegetable Spring Rolls',
+			description:
+				'Light and crunchy appetizers filled with stir-fried vegetables.',
+			timeMinutes: 40,
+			servings: 4,
+			ingredients: [
+				Ingredient.springRollWrappers.getAmount(8),
+				Ingredient.carrot.getAmount(1),
+				Ingredient.beansprouts.getAmount(100, 'g'),
+				Ingredient.soySauce.getAmount(1, 'tbsp'),
+				Ingredient.freshGinger.getAmount(10, 'g'),
+			],
+			steps: [
+				'Stir fry shredded carrots, ginger, and sprouts with soy sauce.',
+				'Place filling on wrappers, roll tightly, and seal with a little water.',
+				'Deep fry or brush with oil and bake until crispy.',
+			],
+			tags: ['chinese', 'appetizer', 'vegetarian'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: "Millionaire's Shortbread",
+			description:
+				'Three layers of heaven: shortbread, gooey caramel, and thick chocolate.',
+			timeMinutes: 90,
+			servings: 12,
+			ingredients: [
+				Ingredient.plainFlour.getAmount(250, 'g'),
+				Ingredient.butter.getAmount(225, 'g'),
+				Ingredient.casterSugar.getAmount(75, 'g'),
+				Ingredient.goldenSyrup.getAmount(30, 'g'),
+				Ingredient.darkChocolate.getAmount(200, 'g'),
+			],
+			steps: [
+				'Rub 175g butter into flour and sugar; press into a tin and bake at 180°C for 20 mins.',
+				'Boil remaining butter, syrup, and condensed milk (pantry) until thick and golden.',
+				'Pour caramel over shortbread and let set.',
+				'Melt chocolate and pour over the caramel. Chill until firm.',
+			],
+			tags: ['sweet', 'baking', 'classic'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Classic Italian Tiramisu',
+			description:
+				'A coffee-flavoured dessert with layers of sponge and mascarpone cream.',
+			timeMinutes: 30,
+			servings: 6,
+			ingredients: [
+				Ingredient.fingerBiscuits.getAmount(24),
+				Ingredient.mascarpone.getAmount(500, 'g'),
+				Ingredient.espresso.getAmount(300, 'ml'),
+				Ingredient.largeEggs.getAmount(3),
+				Ingredient.casterSugar.getAmount(100, 'g'),
+			],
+			steps: [
+				'Whisk egg yolks and sugar until pale, then fold into mascarpone.',
+				'Dip biscuits quickly in coffee and layer in a dish.',
+				'Spread half the cream over biscuits; repeat layers.',
+				'Dust with cocoa powder and chill for 4 hours.',
+			],
+			tags: ['italian', 'dessert', 'no-bake'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Classic Prawn Cocktail',
+			description: 'A retro starter that never goes out of style.',
+			timeMinutes: 15,
+			servings: 4,
+			ingredients: [
+				Ingredient.cookedPrawns.getAmount(400, 'g'),
+				Ingredient.icebergLettuce.getAmount(1),
+				Ingredient.mayonaisse.getAmount(150, 'g'),
+				Ingredient.smokedPaprika.getAmount(0.5, 'tsp'),
+				Ingredient.lemonJuice.getAmount(1, 'tsp'),
+			],
+			steps: [
+				'Shred the lettuce and place in the bottom of glasses.',
+				'Mix mayo with a splash of ketchup (pantry), lemon juice, and paprika.',
+				'Toss prawns in the sauce and spoon over lettuce.',
+				'Top with a pinch of paprika and a lemon wedge.',
+			],
+			tags: ['starter', 'seafood', 'classic'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Chicken Paprikash',
+			description:
+				'A Hungarian classic of tender chicken in a smoky, creamy paprika sauce.',
+			timeMinutes: 50,
+			servings: 4,
+			ingredients: [
+				Ingredient.chickenThighs.getAmount(6),
+				Ingredient.whiteOnion.getAmount(2),
+				Ingredient.smokedPaprika.getAmount(2, 'tbsp'),
+				Ingredient.chickenStock.getAmount(300, 'ml'),
+				Ingredient.cremeFraiche.getAmount(150, 'g'),
+			],
+			steps: [
+				'Brown chicken thighs and remove from pan.',
+				"Sauté onions, then stir in paprika (don't burn it!).",
+				'Add stock and return chicken; simmer for 30 minutes.',
+				'Stir in crème fraîche at the end and serve with noodles or rice.',
+			],
+			tags: ['hungarian', 'chicken', 'smoky'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Spicy Chicken Jalfrezi',
+			description:
+				'A vibrant stir-fried curry with peppers, onions, and green chillies.',
+			timeMinutes: 40,
+			servings: 4,
+			ingredients: [
+				Ingredient.chickenBreast.getAmount(3),
+				Ingredient.redBellPepper.getAmount(1),
+				Ingredient.dicedGreenBellPepper.getAmount(1),
+				Ingredient.tomatoPassata.getAmount(200, 'ml'),
+				Ingredient.garamMasala.getAmount(1, 'tsp'),
+				Ingredient.turmeric.getAmount(1, 'tsp'),
+			],
+			steps: [
+				'Fry chicken until sealed; remove from pan.',
+				'Stir fry peppers and onions until slightly charred.',
+				'Add spices, return chicken, and pour in passata.',
+				'Cook on high heat for 10 minutes until sauce is thick and coating the meat.',
+			],
+			tags: ['indian', 'spicy', 'curry'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Soft Indian Naan Bread',
+			description:
+				'Home-made flatbreads, soft and bubbly, perfect for mopping up curry sauce.',
+			timeMinutes: 90,
+			servings: 4,
+			ingredients: [
+				Ingredient.strongBreadFlour.getAmount(250, 'g'),
+				Ingredient.yeast.getAmount(7, 'g'),
+				Ingredient.greekYogurt.getAmount(20, 'g'),
+				Ingredient.butter.getAmount(20, 'g'),
+			],
+			steps: [
+				'Mix flour, yeast, yogurt, and warm water into a dough; knead for 10 mins.',
+				'Let rise for 1 hour.',
+				'Divide into 4 and roll out thinly.',
+				'Fry in a very hot, dry pan for 1-2 minutes each side until bubbly and charred.',
+			],
+			tags: ['indian', 'bread', 'side'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Crispy Onion Bhajis',
+			description:
+				'Spiced onion fritters, deep-fried until golden and crunchy.',
+			timeMinutes: 30,
+			servings: 4,
+			ingredients: [
+				Ingredient.whiteOnion.getAmount(2),
+				Ingredient.plainFlour.getAmount(100, 'g'),
+				Ingredient.turmeric.getAmount(1, 'tsp'),
+				Ingredient.groundCumin.getAmount(1, 'tsp'),
+				Ingredient.sunflowerOil.getAmount(500, 'ml'),
+			],
+			steps: [
+				'Thinly slice onions and toss with spices and flour.',
+				'Add just enough water to create a thick batter that coats the onions.',
+				'Drop spoonfuls into hot oil and fry for 3-4 minutes until crisp.',
+			],
+			tags: ['indian', 'snack', 'fried'],
+		},
+		{
+			id: IDManger.getNextId(),
+			name: 'Margherita Pizza',
+			description:
+				'The simple classic: tomato, mozzarella, and fresh basil.',
+			timeMinutes: 60,
+			servings: 2,
+			ingredients: [
+				Ingredient.strongBreadFlour.getAmount(300, 'g'),
+				Ingredient.yeast.getAmount(7, 'g'),
+				Ingredient.tomatoPassata.getAmount(150, 'ml'),
+				Ingredient.mozzarellaBall.getAmount(1),
+				Ingredient.freshBasil.getAmount(5, 'g'),
+			],
+			steps: [
+				'Make a dough with flour, yeast, and water; let rise.',
+				'Roll out into two thin circles.',
+				'Spread passata, top with torn mozzarella.',
+				'Bake at the highest possible oven temp for 8-10 minutes.',
+				'Top with fresh basil and a drizzle of olive oil.',
+			],
+			tags: ['italian', 'pizza', 'vegetarian'],
+		},
 	];
 
+	searchQuery: string = '';
 	basket: Record<number, number> = {};
 	checked: Record<string, boolean> = {};
 	sortMode: 'alphabetical' | 'quantity' | 'category' = 'alphabetical';
@@ -1611,6 +1644,16 @@ class App {
 		this.load();
 		this.render();
 		this.updateBasketCount();
+
+		const searchBar = document.getElementById('search') as HTMLInputElement;
+		if (searchBar) {
+			searchBar.oninput = (e) => {
+				this.searchQuery = (
+					e.target as HTMLInputElement
+				).value.toLowerCase();
+				this.render();
+			};
+		}
 	}
 
 	save() {
@@ -1750,9 +1793,37 @@ class App {
 	}
 
 	viewHome(root: HTMLElement) {
+		root.innerHTML = '';
+
+		const filtered = this.recipes.filter((r) => {
+			if (!this.searchQuery) return true;
+
+			const query = this.searchQuery.toLowerCase().trim();
+
+			if (query.startsWith('#')) {
+				const tag = query.slice(1);
+				return r.tags.some((t) => t.toLowerCase().includes(tag));
+			}
+
+			if (query.startsWith('&')) {
+				const ing = query.slice(1);
+				return r.ingredients.some((i) =>
+					i.ingredient.name.toLowerCase().includes(ing),
+				);
+			}
+
+			return r.name.toLowerCase().includes(query);
+		});
+
 		const grid = document.createElement('div');
 		grid.className = 'grid';
-		this.recipes.forEach((recipe) => {
+
+		if (filtered.length === 0) {
+			root.innerHTML = `<p style="padding: 2rem; text-align: center; opacity: 0.5;">No recipes found for "${this.searchQuery}"</p>`;
+			return;
+		}
+
+		filtered.forEach((recipe) => {
 			const description =
 				recipe.description.length > 100
 					? recipe.description.substring(0, 100) + '...'
@@ -1761,27 +1832,34 @@ class App {
 			const tile = document.createElement('div');
 			tile.className = 'tile';
 			tile.innerHTML = `
-				<div class="tile-header">
-					<h3>${recipe.name}</h3>
-					<div class="tags">
-						${recipe.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
-					</div>
-				</div>
-				<p class="description">${description}</p>
-				<div class="metadata">
-					<span>${recipe.timeMinutes}m</span>
-					<span>Serves ${recipe.servings}</span>
-					<span>${recipe.steps.length} steps</span>
-				</div>
-				<button class="add-btn">Add to List</button>
-			`;
+                <div class="tile-header">
+                    <h3>${recipe.name}</h3>
+                    <div class="tags">
+                        ${recipe.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                <p class="description">${description}</p>
+                <div class="metadata">
+                    <span>${recipe.timeMinutes}m</span>
+                    <span>Serves ${recipe.servings}</span>
+                    <span>${recipe.steps.length} steps</span>
+                </div>
+                <button class="add-btn">Add to List</button>
+            `;
+
 			tile.onclick = () => this.navigate(`/recipe/${recipe.id}`);
-			tile.querySelector('button')!.onclick = (e) => {
-				e.stopPropagation();
-				this.addRecipe(recipe.id);
-			};
+
+			const addBtn = tile.querySelector('button');
+			if (addBtn) {
+				addBtn.onclick = (e) => {
+					e.stopPropagation();
+					this.addRecipe(recipe.id);
+				};
+			}
+
 			grid.appendChild(tile);
 		});
+
 		root.appendChild(grid);
 	}
 

@@ -1,5 +1,7 @@
 @use 'sass:color';
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 $color-bg: #feffcb;
 $color-white: #ffffff;
 $color-black: #000000;
@@ -44,25 +46,44 @@ $control-text: $color-black;
 $full-text-color: $color-black;
 $full-back-button-color-bg: $theme-transparent;
 
+@mixin desktop-mobile($property, $value-desktop, $value-mobile) {
+	#{$property}: $value-desktop;
+
+	@media screen and (max-width: 25cm) {
+		#{$property}: $value-mobile !important;
+	}
+}
+
 * {
 	box-sizing: border-box;
+	font-family: "Raleway", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
 }
 
 html {
 	background: $theme-bg;
 	height: 100%;
+	@include desktop-mobile(
+		font-size,
+		16px,
+		18px
+	); // base browser size for rem calculations
 }
 
 body {
 	margin: 0;
 	font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 	background: $theme-bg;
-	color: $theme-text-main;
+	color: $theme-text-main; 
 	line-height: 1.6;
-	font-size: 18px;
+
+	@include desktop-mobile(font-size, 2rem, 3rem);
+
 	min-height: 100dvh;
 }
 
+/* NAV */
 .nav {
 	display: flex;
 	flex-direction: column;
@@ -78,7 +99,8 @@ body {
 		font-weight: bold;
 		cursor: pointer;
 		color: $nav-logo-color;
-		font-size: 1.2rem;
+
+		@include desktop-mobile(font-size, 2rem, 4rem);
 	}
 
 	input {
@@ -87,7 +109,7 @@ body {
 		border: 2px solid $theme-border;
 		color: $nav-input-text;
 		padding: 0.9rem 1rem;
-		font-size: 1rem;
+		@include desktop-mobile(font-size, 1rem, 1.2rem);
 		border-radius: 8px;
 
 		&:focus {
@@ -105,6 +127,7 @@ body {
 			border: 1px solid $theme-border;
 			color: $nav-button-text;
 			padding: 0.6rem 1rem;
+			@include desktop-mobile(font-size, 1rem, 1.4rem);
 			border-radius: 8px;
 			cursor: pointer;
 
@@ -131,6 +154,7 @@ body {
 	}
 }
 
+/* GRID */
 .grid {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -146,6 +170,7 @@ body {
 	}
 }
 
+/* TILE */
 .tile {
 	background: $tile-bg;
 	padding: 1.5rem;
@@ -157,12 +182,12 @@ body {
 
 	h3 {
 		margin: 0;
-		font-size: 1.3rem;
+		@include desktop-mobile(font-size, 1.3rem, 1.8rem);
 		color: $tile-title-color;
 	}
 
 	p {
-		font-size: 0.85rem;
+		@include desktop-mobile(font-size, 0.85rem, 1.2rem);
 		opacity: 0.75;
 		margin: 0 0 0.8rem 0;
 		color: $tile-subtext-color;
@@ -177,6 +202,7 @@ body {
 		cursor: pointer;
 		border-radius: 6px;
 		font-weight: bold;
+		@include desktop-mobile(font-size, 1rem, 1.4rem);
 
 		&:hover,
 		&:focus-within {
@@ -192,11 +218,12 @@ body {
 			display: flex;
 			flex-direction: row;
 			justify-content: space-evenly;
-			
+			flex-wrap: wrap;
+
 			span {
-				font-size: small;
+				@include desktop-mobile(font-size, 0.85rem, 1.1rem);
 				color: $theme-text-dim;
-				
+
 				&::before {
 					content: '#';
 				}
@@ -212,8 +239,8 @@ body {
 		justify-content: space-evenly;
 
 		span {
+			@include desktop-mobile(font-size, 0.9rem, 1.1rem);
 			color: $theme-text-dim;
-			font-size: small;
 		}
 	}
 
@@ -230,6 +257,7 @@ body {
 	}
 }
 
+/* FULL VIEW */
 .full {
 	color: $full-text-color;
 	padding: 1.5rem;
@@ -242,15 +270,17 @@ body {
 		padding: 0.6rem;
 		border-radius: 0.6rem;
 		margin: 0.3rem;
+		@include desktop-mobile(font-size, 0.95rem, 1.2rem);
 	}
 
 	h1 {
-		font-size: 2rem;
+		@include desktop-mobile(font-size, 2rem, 3rem);
 		margin: 1rem 0;
 		color: $theme-text-dark;
 	}
 
 	.recipe-desc {
+		@include desktop-mobile(font-size, 1rem, 1.4rem);
 		color: $theme-text-dim;
 		margin-bottom: 2rem;
 	}
@@ -260,6 +290,7 @@ body {
 		border: 1px solid $full-back-button-color-bg;
 		color: $full-text-color;
 		padding: 0.5rem 1rem;
+		@include desktop-mobile(font-size, 0.95rem, 1.2rem);
 		border-radius: 6px;
 		margin-bottom: 1rem;
 		cursor: pointer;
@@ -273,7 +304,7 @@ body {
 		border: none;
 		border-radius: 8px;
 		font-weight: bold;
-		font-size: 1.1rem;
+		@include desktop-mobile(font-size, 1.1rem, 1.6rem);
 		cursor: pointer;
 	}
 
@@ -283,10 +314,12 @@ body {
 		padding-left: 1.2rem;
 		li {
 			margin-bottom: 0.8rem;
+			@include desktop-mobile(font-size, 1rem, 1.4rem);
 		}
 	}
 }
 
+/* CONTROLS */
 .controls {
 	display: flex;
 	flex-direction: column;
@@ -301,7 +334,7 @@ body {
 		color: $control-text;
 		border: 2px solid $theme-border;
 		border-radius: 8px;
-		font-size: 1rem;
+		@include desktop-mobile(font-size, 1rem, 1.4rem);
 	}
 
 	@media (min-width: 500px) {
@@ -309,6 +342,7 @@ body {
 	}
 }
 
+/* BASKET */
 .basket-recipes-list {
 	border-bottom: 1px solid $theme-border;
 	padding-bottom: 1rem;
@@ -324,10 +358,12 @@ body {
 	.recipe-name {
 		flex: 1;
 		color: $basket-item-name;
+		@include desktop-mobile(font-size, 1rem, 1.4rem);
 
 		.count {
 			color: $basket-count-color;
 			font-style: italic;
+			@include desktop-mobile(font-size, 0.9rem, 1.1rem);
 		}
 	}
 
@@ -340,6 +376,7 @@ body {
 			border: 1px solid $theme-border;
 			color: $basket-btn-text;
 			padding: 0.4rem 0.8rem;
+			@include desktop-mobile(font-size, 0.95rem, 1.2rem);
 			border-radius: 4px;
 			cursor: pointer;
 
@@ -359,6 +396,7 @@ body {
 	}
 }
 
+/* RECIPES */
 .recipes {
 	background: #f9f9f9;
 	padding: 15px;
@@ -373,7 +411,7 @@ body {
 
 		h2 {
 			margin: 0;
-			font-size: 1.2rem;
+			@include desktop-mobile(font-size, 2rem, 3rem);
 		}
 
 		button {
@@ -383,6 +421,8 @@ body {
 			border: none;
 			border-radius: 5px;
 			cursor: pointer;
+			@include desktop-mobile(font-size, 0.95rem, 1.3rem);
+			@include desktop-mobile(scale, 1, 1.3)
 		}
 	}
 
@@ -397,12 +437,21 @@ body {
 			display: flex;
 			gap: 5px;
 
-			.inv-dec-button {
+			.inc-dec-button {
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				
 				padding: 4px 10px;
 				border: 1px solid #ccc;
 				border-radius: 4px;
 				cursor: pointer;
 				background: #fff;
+
+				@include desktop-mobile(font-size, 2rem, 3rem);
+				
+				@include desktop-mobile(height, 1rem, 4rem);
+				@include desktop-mobile(width, 1rem, 4rem);
 			}
 
 			.delete-button {
@@ -412,6 +461,7 @@ body {
 				border-radius: 4px;
 				cursor: pointer;
 				background: #fff;
+				@include desktop-mobile(font-size, 0.95rem, 1.2rem);
 			}
 		}
 	}
@@ -426,14 +476,18 @@ body {
 	select {
 		padding: 5px;
 		border-radius: 5px;
+		@include desktop-mobile(font-size, 0.95rem, 1.2rem);
 	}
 }
 
+/* DIM TEXT */
 .dim-text {
 	color: #666;
 	margin: 0;
+	@include desktop-mobile(font-size, 0.9rem, 1.2rem);
 }
 
+/* SHOPPING ITEM */
 .shopping-item {
 	display: flex;
 	justify-content: space-between;
@@ -442,7 +496,7 @@ body {
 	border-bottom: 1px solid $theme-border;
 	gap: 5px;
 	padding: 12px 0;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #868686;
 
 	&:has(:checked) {
 		opacity: 0.4;
@@ -455,23 +509,30 @@ body {
 	.item-info {
 		flex: 1;
 		cursor: pointer;
+		@include desktop-mobile(font-size, 1rem, 1.6rem);
 	}
 
 	.item-name {
 		font-weight: bold;
 		color: $theme-text-dark;
-		font-size: 1.1rem;
+		@include desktop-mobile(font-size, 1.1rem, 2.6rem);
 	}
 
 	.item-meta {
-		font-size: 0.9rem;
+		@include desktop-mobile(font-size, 0.9rem, 1.2rem);
 		color: $theme-text-dim;
 	}
 
 	input[type='checkbox'] {
-		width: 1.5rem;
-		height: 1.5rem;
+		@include desktop-mobile(width, 1.5rem, 4rem);
+		@include desktop-mobile(height, 1.5rem, 4rem);
 		accent-color: $basket-item-accent;
 		cursor: pointer;
+	}
+}
+
+@media (max-width: 700px) {
+	body {
+		font-size: 2rem !important;
 	}
 }

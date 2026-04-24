@@ -778,7 +778,7 @@ class App {
         {
             id: IDManger.getNextId(),
             name: 'Chicken Tikka Masala',
-            description: 'The nation\'s favourite curry: marinated chicken in a creamy, spiced tomato sauce.',
+            description: "The nation's favourite curry: marinated chicken in a creamy, spiced tomato sauce.",
             timeMinutes: 50,
             servings: 4,
             ingredients: [
@@ -1309,7 +1309,7 @@ class App {
         },
         {
             id: IDManger.getNextId(),
-            name: 'Millionaire\'s Shortbread',
+            name: "Millionaire's Shortbread",
             description: 'Three layers of heaven: shortbread, gooey caramel, and thick chocolate.',
             timeMinutes: 90,
             servings: 12,
@@ -1385,7 +1385,7 @@ class App {
             ],
             steps: [
                 'Brown chicken thighs and remove from pan.',
-                'Sauté onions, then stir in paprika (don\'t burn it!).',
+                "Sauté onions, then stir in paprika (don't burn it!).",
                 'Add stock and return chicken; simmer for 30 minutes.',
                 'Stir in crème fraîche at the end and serve with noodles or rice.',
             ],
@@ -1476,6 +1476,7 @@ class App {
             tags: ['italian', 'pizza', 'vegetarian'],
         },
     ];
+    searchQuery = '';
     basket = {};
     checked = {};
     sortMode = 'alphabetical';
@@ -1483,6 +1484,13 @@ class App {
         this.load();
         this.render();
         this.updateBasketCount();
+        const searchBar = document.getElementById('search');
+        if (searchBar) {
+            searchBar.oninput = (e) => {
+                this.searchQuery = e.target.value.toLowerCase();
+                this.render();
+            };
+        }
     }
     save() {
         localStorage.setItem('shopping-list', JSON.stringify({
@@ -1603,34 +1611,56 @@ class App {
             el.innerText = total.toString();
     }
     viewHome(root) {
+        root.innerHTML = '';
+        const filtered = this.recipes.filter((r) => {
+            if (!this.searchQuery)
+                return true;
+            const query = this.searchQuery.toLowerCase().trim();
+            if (query.startsWith('#')) {
+                const tag = query.slice(1);
+                return r.tags.some((t) => t.toLowerCase().includes(tag));
+            }
+            if (query.startsWith('&')) {
+                const ing = query.slice(1);
+                return r.ingredients.some((i) => i.ingredient.name.toLowerCase().includes(ing));
+            }
+            return r.name.toLowerCase().includes(query);
+        });
         const grid = document.createElement('div');
         grid.className = 'grid';
-        this.recipes.forEach((recipe) => {
+        if (filtered.length === 0) {
+            root.innerHTML = `<p style="padding: 2rem; text-align: center; opacity: 0.5;">No recipes found for "${this.searchQuery}"</p>`;
+            return;
+        }
+        filtered.forEach((recipe) => {
             const description = recipe.description.length > 100
                 ? recipe.description.substring(0, 100) + '...'
                 : recipe.description;
             const tile = document.createElement('div');
             tile.className = 'tile';
             tile.innerHTML = `
-				<div class="tile-header">
-					<h3>${recipe.name}</h3>
-					<div class="tags">
-						${recipe.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
-					</div>
-				</div>
-				<p class="description">${description}</p>
-				<div class="metadata">
-					<span>${recipe.timeMinutes}m</span>
-					<span>Serves ${recipe.servings}</span>
-					<span>${recipe.steps.length} steps</span>
-				</div>
-				<button class="add-btn">Add to List</button>
-			`;
+                <div class="tile-header">
+                    <h3>${recipe.name}</h3>
+                    <div class="tags">
+                        ${recipe.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                <p class="description">${description}</p>
+                <div class="metadata">
+                    <span>${recipe.timeMinutes}m</span>
+                    <span>Serves ${recipe.servings}</span>
+                    <span>${recipe.steps.length} steps</span>
+                </div>
+                <button class="add-btn">Add to List</button>
+            `;
             tile.onclick = () => this.navigate(`/recipe/${recipe.id}`);
-            tile.querySelector('button').onclick = (e) => {
-                e.stopPropagation();
-                this.addRecipe(recipe.id);
-            };
+            const addBtn = tile.querySelector('button');
+            if (addBtn) {
+                addBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    this.addRecipe(recipe.id);
+                };
+            }
             grid.appendChild(tile);
         });
         root.appendChild(grid);
