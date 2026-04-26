@@ -1,0 +1,44 @@
+@use 'common' as *;
+@use 'sass:color';
+
+* {
+	box-sizing: border-box;
+	font-family: 'Raleway', sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+}
+
+html {
+	background: $theme-bg;
+	height: 100%;
+	@include desktop-mobile(
+		font-size,
+		16px,
+		18px
+	); // base browser size for rem calculations
+}
+
+body {
+	margin: 0;
+	font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	background: $theme-bg;
+	color: $theme-text-main;
+	line-height: 1.6;
+
+	@include desktop-mobile(font-size, 2rem, 3rem);
+
+	min-height: 100dvh;
+}
+
+/* DIM TEXT */
+.dim-text {
+	color: #666;
+	margin: 0;
+	@include desktop-mobile(font-size, 0.9rem, 1.2rem);
+}
+
+@media (max-width: 700px) {
+	body {
+		font-size: 2rem !important;
+	}
+}

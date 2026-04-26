@@ -1,0 +1,45 @@
+@use 'sass:color';
+
+$color-bg: #feffcb;
+$color-white: #ffffff;
+$color-black: #000000;
+$color-accent: #006b27;
+$color-border-dark: #003805;
+$color-danger: #f87171;
+$color-gray-hover: #94a3b8;
+$color-gray-active: #334155;
+
+$theme-bg: $color-bg;
+$theme-text-main: $color-white;
+$theme-text-dark: $color-black;
+$theme-text-dim: #5c6572;
+$theme-border: $color-border-dark;
+$theme-shadow: rgba($color-black, 0.3);
+$theme-transparent: transparent;
+
+$nav-bg: color.adjust($color-bg, $lightness: -10%);
+$nav-logo-color: $color-accent;
+$nav-input-bg: color.adjust($nav-bg, $lightness: -10%);
+$nav-input-text: $color-black;
+$nav-button-bg: $color-accent;
+$nav-button-text: $color-white;
+
+$tile-bg: color.adjust($color-bg, $lightness: 5%);
+$tile-title-color: $color-accent;
+$tile-subtext-color: $theme-text-dim;
+$tile-button-bg: $color-accent;
+$tile-button-text: $color-black;
+$tile-border-hover: $color-accent;
+
+$basket-item-name: $color-black;
+$basket-item-accent: $color-accent;
+$basket-count-color: $color-gray-hover;
+$basket-btn-bg: $nav-bg;
+$basket-btn-text: $color-black;
+$basket-remove-color: $color-danger;
+
+$control-bg: $nav-bg;
+$control-text: $color-black;
+
+$full-text-color: $color-black;
+$full-back-button-color-bg: $theme-transparent;

@@ -1,0 +1,45 @@
+@use 'common' as *;
+@use 'sass:color';
+
+.shopping-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.2rem 0;
+	border-bottom: 1px solid $theme-border;
+	gap: 5px;
+	padding: 12px 0;
+	border-bottom: 1px solid #868686;
+
+	&:has(:checked) {
+		opacity: 0.4;
+
+		.item-name {
+			text-decoration: line-through;
+		}
+	}
+
+	.item-info {
+		flex: 1;
+		cursor: pointer;
+		@include desktop-mobile(font-size, 1rem, 1.6rem);
+	}
+
+	.item-name {
+		font-weight: bold;
+		color: $theme-text-dark;
+		@include desktop-mobile(font-size, 1.1rem, 2.6rem);
+	}
+
+	.item-meta {
+		@include desktop-mobile(font-size, 0.9rem, 1.2rem);
+		color: $theme-text-dim;
+	}
+
+	input[type='checkbox'] {
+		@include desktop-mobile(width, 1.5rem, 4rem);
+		@include desktop-mobile(height, 1.5rem, 4rem);
+		accent-color: $basket-item-accent;
+		cursor: pointer;
+	}
+}

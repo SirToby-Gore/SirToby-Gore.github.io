@@ -1,0 +1,63 @@
+@use 'common' as *;
+@use 'sass:color';
+
+.full {
+	color: $full-text-color;
+	padding: 1.5rem;
+	max-width: 800px;
+	margin: 0 auto;
+
+	.allergen-warning {
+		background-color: rgba($color-danger, 0.6);
+		border: rgba($color-danger, 0.8) 3px solid;
+		padding: 0.6rem;
+		border-radius: 0.6rem;
+		margin: 0.3rem;
+		@include desktop-mobile(font-size, 0.95rem, 1.2rem);
+	}
+
+	h1 {
+		@include desktop-mobile(font-size, 2rem, 3rem);
+		margin: 1rem 0;
+		color: $theme-text-dark;
+	}
+
+	.recipe-desc {
+		@include desktop-mobile(font-size, 1rem, 1.4rem);
+		color: $theme-text-dim;
+		margin-bottom: 2rem;
+	}
+
+	.back-link {
+		background: $full-back-button-color-bg;
+		border: 1px solid $full-back-button-color-bg;
+		color: $full-text-color;
+		padding: 0.5rem 1rem;
+		@include desktop-mobile(font-size, 0.95rem, 1.2rem);
+		border-radius: 6px;
+		margin-bottom: 1rem;
+		cursor: pointer;
+	}
+
+	.primary-btn {
+		background: $color-accent;
+		color: $tile-button-text;
+		width: 100%;
+		padding: 1rem;
+		border: none;
+		border-radius: 8px;
+		font-weight: bold;
+		@include desktop-mobile(font-size, 1.1rem, 1.6rem);
+		cursor: pointer;
+	}
+
+	ul,
+	ol {
+		color: $full-text-color;
+		padding-left: 1.2rem;
+		li {
+			margin-bottom: 0.8rem;
+			@include desktop-mobile(font-size, 1rem, 1.4rem);
+		}
+	}
+}

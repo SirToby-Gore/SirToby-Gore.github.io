@@ -1,0 +1,80 @@
+@use 'common' as *;
+@use 'sass:color';
+
+@mixin recipes() {
+	background: #f9f9f9;
+	padding: 15px;
+	border-radius: 8px;
+	margin-bottom: 25px;
+
+	.top-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 10px;
+
+		h2 {
+			margin: 0;
+			@include desktop-mobile(font-size, 2rem, 3rem);
+		}
+
+		button {
+			padding: 5px 10px;
+			background: #e53e3e;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			@include desktop-mobile(font-size, 0.95rem, 1.3rem);
+			@include desktop-mobile(scale, 1, 1.3);
+		}
+	}
+
+	.list {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 8px 0;
+		border-bottom: 1px solid #eee;
+
+		div {
+			display: flex;
+			gap: 5px;
+
+			.inc-dec-button {
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+
+				padding: 4px 10px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				cursor: pointer;
+				background: #fff;
+
+				@include desktop-mobile(font-size, 2rem, 3rem);
+
+				@include desktop-mobile(height, 1rem, 4rem);
+				@include desktop-mobile(width, 1rem, 4rem);
+			}
+
+			.delete-button {
+				padding: 4px 10px;
+				border: 1px solid #e53e3e;
+				color: #e53e3e;
+				border-radius: 4px;
+				cursor: pointer;
+				background: #fff;
+				@include desktop-mobile(font-size, 0.95rem, 1.2rem);
+			}
+		}
+	}
+}
+
+.recipes {
+	@include recipes();
+}
+
+.loose {
+	@include recipes();
+}

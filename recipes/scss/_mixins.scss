@@ -1,0 +1,7 @@
+@mixin desktop-mobile($property, $value-desktop, $value-mobile) {
+	#{$property}: $value-desktop;
+
+	@media screen and (max-width: 25cm) {
+		#{$property}: $value-mobile !important;
+	}
+}

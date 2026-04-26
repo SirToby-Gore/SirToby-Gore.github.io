@@ -1,0 +1,68 @@
+@use 'common' as *;
+@use 'sass:color';
+
+.basket-recipes-list {
+	border-bottom: 1px solid $theme-border;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+}
+
+.basket-recipe-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0.8rem;
+
+	.recipe-name {
+		flex: 1;
+		color: $basket-item-name;
+		@include desktop-mobile(font-size, 1rem, 1.4rem);
+
+		.count {
+			color: $basket-count-color;
+			font-style: italic;
+			@include desktop-mobile(font-size, 0.9rem, 1.1rem);
+		}
+	}
+
+	.qty-btns {
+		display: flex;
+		gap: 0.4rem;
+
+		button {
+			background: $basket-btn-bg;
+			border: 1px solid $theme-border;
+			color: $basket-btn-text;
+			padding: 0.4rem 0.8rem;
+			@include desktop-mobile(font-size, 0.95rem, 1.2rem);
+			border-radius: 4px;
+			cursor: pointer;
+
+			&:hover,
+			&:focus-within {
+				background-color: $color-gray-hover;
+			}
+			&:active {
+				background-color: $color-gray-active;
+			}
+		}
+
+		.remove-btn {
+			color: $basket-remove-color;
+			border-color: rgba($basket-remove-color, 0.3);
+		}
+	}
+}
+
+.basket-controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+
+	select {
+		padding: 5px;
+		border-radius: 5px;
+		@include desktop-mobile(font-size, 0.95rem, 1.2rem);
+	}
+}

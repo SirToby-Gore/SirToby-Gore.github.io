@@ -1,0 +1,24 @@
+@use 'common' as *;
+@use 'sass:color';
+
+.controls {
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+	margin: 2rem 0;
+
+	select,
+	.clear-btn {
+		width: 100%;
+		padding: 1rem;
+		background: $control-bg;
+		color: $control-text;
+		border: 2px solid $theme-border;
+		border-radius: 8px;
+		@include desktop-mobile(font-size, 1rem, 1.4rem);
+	}
+
+	@media (min-width: 500px) {
+		flex-direction: row;
+	}
+}

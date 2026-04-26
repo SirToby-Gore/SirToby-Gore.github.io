@@ -1,0 +1,90 @@
+@use 'common' as *;
+@use 'sass:color';
+
+.tile {
+	background: $tile-bg;
+	padding: 1.5rem;
+	border-radius: 12px;
+	border: 2px solid $theme-transparent;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+
+	h3 {
+		margin: 0;
+		@include desktop-mobile(font-size, 1.3rem, 1.8rem);
+		color: $tile-title-color;
+	}
+
+	p {
+		@include desktop-mobile(font-size, 0.85rem, 1.2rem);
+		opacity: 0.75;
+		margin: 0 0 0.8rem 0;
+		color: $tile-subtext-color;
+	}
+
+	button {
+		width: 100%;
+		border: none;
+		padding: 0.6rem;
+		background: $tile-button-bg;
+		color: $tile-button-text;
+		cursor: pointer;
+		border-radius: 6px;
+		font-weight: bold;
+		@include desktop-mobile(font-size, 1rem, 1.4rem);
+
+		&:hover,
+		&:focus-within {
+			background: color.adjust($tile-button-bg, $lightness: -5%);
+		}
+		&:active {
+			background: color.adjust($tile-button-bg, $lightness: -15%);
+		}
+	}
+
+	.tile-header {
+		.tags {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			flex-wrap: wrap;
+
+			span {
+				@include desktop-mobile(font-size, 0.85rem, 1.1rem);
+				color: $theme-text-dim;
+
+				&::before {
+					content: '#';
+				}
+			}
+		}
+	}
+
+	.metadata {
+		display: inline-flex;
+		flex-direction: row;
+		gap: 1rem;
+		align-items: center;
+		justify-content: space-evenly;
+
+		span {
+			@include desktop-mobile(font-size, 0.9rem, 1.1rem);
+			color: $theme-text-dim;
+		}
+	}
+
+	&:active {
+		background: color.adjust($tile-bg, $lightness: 5%);
+	}
+
+	@media (min-width: 1024px) {
+		transition: transform 0.2s;
+		&:hover {
+			border-color: $tile-border-hover;
+			transform: translateY(-5px);
+		}
+	}
+}
+
+
