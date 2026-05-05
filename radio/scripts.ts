@@ -119,7 +119,7 @@ function getData() {
 				'https://api.dicebear.com/7.x/avataaars/svg?seed=Toby',
 		},
 		rationale: [
-			'I do not accept the status quo; I demand sonic integrity. Crafting a station sound is much like chopping wood; you must respect the grain of the frequency. I will engineer brilliant, joyous sonic palettes; I will build our audio from the ground up and from the foundations we stand on already.',
+			'I do not accept the status quo; I demand sonic integrity. Crafting a station sound will take much respect; I will engineer brilliant, joyous, and sonic palettes; I will build our audio from the ground up and from what we stand on already.',
 			'Gold will not be enough to satisfy my ambition; I seek to set a new platinum standard for prizes in station sound.',
 		],
 		tracks: [
