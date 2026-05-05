@@ -100,7 +100,7 @@ body.nerve-theme {
 }
 
 .track-list-interactive {
-  width: clamp(20rem, 80%, 150rem);
+  width: clamp(15rem, 80%, 150rem);
   display: flex;
   flex-direction: column;
   max-width: 800px;
@@ -156,6 +156,9 @@ body.nerve-theme {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  max-height: 70dvh;
+  max-width: 70dvw;
+  overflow-y: scroll;
   margin: 0;
   position: fixed;
   top: 50%;
