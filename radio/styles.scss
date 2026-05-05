@@ -1,0 +1,343 @@
+$bg-color: #2c2c2c;
+$accent-primary: #e1075e;
+$accent-glow: #a30041;
+$text-main: #f8fafc;
+$text-muted: #94a3b8;
+$glass-bg: rgba(255, 255, 255, 0.05);
+$glass-border: rgba(255, 255, 255, 0.1);
+
+@mixin glass-panel {
+	background: $glass-bg;
+	backdrop-filter: blur(25px);
+	-webkit-backdrop-filter: blur(25px);
+	border: 1px solid $glass-border;
+}
+
+body.nerve-theme {
+	background-color: $bg-color;
+	color: $text-main;
+	font-family: 'Outfit', sans-serif;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+.ambient-background {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	overflow: hidden;
+
+	.orb {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(120px);
+		opacity: 0.4;
+		animation: floating-orb 20s infinite alternate ease-in-out;
+
+		&-primary {
+			width: 60vw;
+			height: 60vw;
+			background: radial-gradient(
+				circle,
+				$accent-glow 0%,
+				transparent 70%
+			);
+			top: -20%;
+			left: -10%;
+		}
+
+		&-secondary {
+			width: 50vw;
+			height: 50vw;
+			background: radial-gradient(
+				circle,
+				$accent-primary 0%,
+				transparent 70%
+			);
+			bottom: -15%;
+			right: -10%;
+			animation-delay: -7s;
+		}
+	}
+}
+
+@keyframes floating-orb {
+	0% {
+		transform: translate(0, 0) scale(1);
+	}
+	100% {
+		transform: translate(5%, 5%) scale(1.15);
+	}
+}
+
+.app-container {
+	display: flex;
+	flex: 1;
+	height: 100vh;
+	width: 100%;
+}
+
+.content-viewport {
+	flex: 1;
+	overflow-y: auto;
+	padding: 6rem 4rem;
+	scroll-behavior: smooth;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+	.brand-name {
+		font-size: 4rem;
+		font-weight: 800;
+		letter-spacing: -2px;
+		background: linear-gradient(90deg, #fff, $accent-primary);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.brand-role {
+		font-family: 'Space Mono', monospace;
+		font-size: 1.2rem;
+		color: $accent-primary;
+		text-transform: uppercase;
+		letter-spacing: 4px;
+		display: block;
+		margin-top: -0.5rem;
+		margin-bottom: 3rem;
+	}
+
+	.display-text {
+		font-size: clamp(1.6rem, 2.4vw, 4rem);
+		line-height: 1.1;
+		font-weight: 800;
+		max-width: 900px;
+		margin-bottom: 2.5rem;
+	}
+
+	.rationale-block {
+		max-width: 750px;
+		font-size: 1.4rem;
+		line-height: 1.7;
+		color: $text-muted;
+		margin-bottom: 5rem;
+
+		.text-primary {
+			color: $accent-primary;
+			font-weight: 600;
+		}
+	}
+}
+
+.track-list-interactive {
+	width: clamp(20rem, 80%, 150rem);
+	display: flex;
+	flex-direction: column;
+	max-width: 800px;
+	border-top: 1px solid $glass-border;
+	margin-bottom: 5rem;
+}
+
+.track-item {
+	width: 100%;
+	border-bottom: 1px solid $glass-border;
+
+	.track-info {
+		width: 100%;
+		background: transparent;
+		border: none;
+		padding: 2rem 0;
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		cursor: pointer;
+		text-align: left;
+		color: inherit;
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+		.track-num {
+			font-family: 'Space Mono', monospace;
+			color: rgba($text-main, 0.3);
+			font-size: 1.2rem;
+			transition: color 0.3s ease;
+		}
+
+		.track-title {
+			font-size: 2.2rem;
+			font-weight: 600;
+			transition: color 0.3s ease;
+		}
+
+		&:hover {
+			transform: translateX(1.5rem);
+			.track-title {
+				color: $accent-primary;
+			}
+			.track-num {
+				color: $accent-primary;
+			}
+		}
+	}
+}
+
+[popover] {
+	@include glass-panel;
+	color: $text-main;
+	width: 400px;
+	padding: 2rem;
+	border-radius: 12px;
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+	margin: 0;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.9);
+	opacity: 0;
+	transition:
+		opacity 0.3s ease,
+		transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		overlay 0.3s allow-discrete,
+		display 0.3s allow-discrete;
+
+	.close-button {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		background-color: $glass-bg;
+		border: $glass-border;
+
+		width: 1.6rem;
+		aspect-ratio: 1;
+		border-radius: 0.6rem;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&::after {
+			color: $accent-primary;
+			content: 'x';
+			font-size: x-large;
+		}
+	}
+
+	.track-title {
+		color: $accent-primary;
+		font-size: xx-large;
+	}
+
+	p {
+		font-size: 1.2rem;
+		line-height: 1.6;
+		margin: 0;
+		font-size: x-large;
+	}
+
+	&::backdrop {
+		background: rgba(0, 0, 0, 0.6);
+		backdrop-filter: blur(8px);
+		opacity: 0;
+		transition:
+			opacity 0.3s ease,
+			display 0.3s allow-discrete,
+			overlay 0.3s allow-discrete;
+	}
+
+	&:popover-open {
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1);
+
+		&::backdrop {
+			opacity: 1;
+		}
+	}
+}
+
+@starting-style {
+	[popover]:popover-open {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0.9);
+	}
+	[popover]:popover-open::backdrop {
+		opacity: 0;
+	}
+}
+
+@media (max-width: 600px) {
+	.content-viewport {
+		padding: 2rem;
+	}
+	.track-item .track-info .track-title {
+		font-size: 1.6rem;
+	}
+	[popover] {
+		width: 90vw;
+	}
+}
+
+.profile-header {
+	display: flex;
+	align-items: center;
+	gap: 3rem;
+	margin-bottom: 1rem;
+}
+
+.profile-pic {
+	width: 120px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	border: 3px solid $accent-primary;
+	object-fit: cover;
+	@include glass-panel;
+}
+
+.voting-footer {
+	margin-top: 6rem;
+	padding: 3rem;
+	@include glass-panel;
+	border-radius: 20px;
+	text-align: center;
+	margin-bottom: 5rem;
+}
+
+.footer-content p {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 1.5rem;
+}
+
+.vote-button {
+	display: inline-block;
+	background: $accent-primary;
+	color: white;
+	padding: 1rem 2.5rem;
+	border-radius: 50px;
+	text-decoration: none;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+	box-shadow: 0 10px 20px rgba($accent-primary, 0.3);
+
+	&:hover {
+		transform: scale(1.05);
+		box-shadow: 0 15px 30px rgba($accent-primary, 0.5);
+	}
+}
+
+@media (max-width: 600px) {
+	.profile-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+	.profile-pic {
+		width: 80px;
+		height: 80px;
+	}
+}
