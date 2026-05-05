@@ -163,14 +163,14 @@ function getData() {
 				index: '06',
 				title: 'My Influence',
 				content:
-					'My vision for this role is fueled by the legendary sonic craftsmanship of artists like Daft Punk and Earth, Wind & Fire, bringing that same funk and precision to our airwaves.',
+					'My vision for this role is fuelled by the legendary sonic craftsmanship of artists like Daft Punk and Earth, Wind & Fire, bringing that same funk and precision to our airwaves.',
 			},
 			{
 				id: 'supersonic',
 				index: '07',
 				title: 'Going Supersonic',
 				content:
-					'I aim to bring a supersonic edge to our themes here at Nerve Radio, introducing fresh, cutting-edge sounds that will leave our listeners truly amazed.',
+					'I aim to bring a supersonic edge to our themes here at Nerve Radio, introducing fresh, cutting-edge sounds that will leave our listeners truly amazed; hopefully with time and effort a sonic theme or two for Nerve.',
 			},
 			{
 				id: 'jingles',
@@ -188,7 +188,7 @@ function getData() {
 			},
 		],
 		voting: {
-			text: 'Support the Sonic Vision',
+			text: 'Support the Super Sonic Vision',
 			link: 'https://nerveradio.co.uk/vote',
 			buttonLabel: 'Vote for Toby Gore',
 		},

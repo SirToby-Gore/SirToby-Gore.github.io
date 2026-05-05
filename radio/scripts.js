@@ -85,7 +85,7 @@ function getData() {
             profileImage: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Toby',
         },
         rationale: [
-            'I do not accept the status quo; I demand sonic integrity. Crafting a station sound is much like chopping wood; you must respect the grain of the frequency. I will engineer brilliant, joyous sonic palettes; I will build our audio from the ground up and from the foundations we stand on already.',
+            'I do not accept the status quo; I demand sonic integrity. Crafting a station sound will take much respect; I will engineer brilliant, joyous, and sonic palettes; I will build our audio from the ground up and from what we stand on already.',
             'Gold will not be enough to satisfy my ambition; I seek to set a new platinum standard for prizes in station sound.',
         ],
         tracks: [
@@ -123,13 +123,13 @@ function getData() {
                 id: 'influence',
                 index: '06',
                 title: 'My Influence',
-                content: 'My vision for this role is fueled by the legendary sonic craftsmanship of artists like Daft Punk and Earth, Wind & Fire, bringing that same funk and precision to our airwaves.',
+                content: 'My vision for this role is fuelled by the legendary sonic craftsmanship of artists like Daft Punk and Earth, Wind & Fire, bringing that same funk and precision to our airwaves.',
             },
             {
                 id: 'supersonic',
                 index: '07',
                 title: 'Going Supersonic',
-                content: 'I aim to bring a supersonic edge to our themes here at Nerve Radio, introducing fresh, cutting-edge sounds that will leave our listeners truly amazed.',
+                content: 'I aim to bring a supersonic edge to our themes here at Nerve Radio, introducing fresh, cutting-edge sounds that will leave our listeners truly amazed; hopefully with time and effort a sonic theme or two for Nerve.',
             },
             {
                 id: 'jingles',
@@ -145,7 +145,7 @@ function getData() {
             },
         ],
         voting: {
-            text: 'Support the Sonic Vision',
+            text: 'Support the Super Sonic Vision',
             link: 'https://nerveradio.co.uk/vote',
             buttonLabel: 'Vote for Toby Gore',
         },
