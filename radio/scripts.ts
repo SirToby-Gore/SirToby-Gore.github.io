@@ -116,7 +116,7 @@ function getData() {
 			tagline:
 				'The pulse of Nerve Radio requires architectural integrity.',
 			profileImage:
-				'https://api.dicebear.com/7.x/avataaars/svg?seed=Toby',
+				'nerve-profile-pic.jpeg',
 		},
 		rationale: [
 			'I do not accept the status quo; I demand sonic integrity. Crafting a station sound will take much respect; I will engineer brilliant, joyous, and sonic palettes; I will build our audio from the ground up and from what we stand on already.',
